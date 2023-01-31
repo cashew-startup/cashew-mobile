@@ -21,6 +21,7 @@ kotlin {
             dependencies {
                 implementation(libs.bundles.ktor.client)
                 implementation(libs.decompose)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {

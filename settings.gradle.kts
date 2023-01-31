@@ -44,6 +44,9 @@ dependencyResolutionManagement {
 
             version("decompose", "0.8.0")
             library("decompose", "com.arkivanov.decompose", "decompose").versionRef("decompose")
+
+            version("koin", "3.3.0")
+            library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")
         }
     }
 
