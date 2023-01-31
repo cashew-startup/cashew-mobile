@@ -1,5 +1,3 @@
-val ktor_version: String by project
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -21,13 +19,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-core:$ktor_version")
-                implementation("io.ktor:ktor-client-cio:$ktor_version")
-                implementation("io.ktor:ktor-client-serialization:$ktor_version")
-                implementation("io.ktor:ktor-client-websockets:$ktor_version")
-                implementation("io.ktor:ktor-client-logging:$ktor_version")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktor_version")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
+                implementation(libs.bundles.ktor.client)
+                implementation(libs.decompose)
             }
         }
         val commonTest by getting {
