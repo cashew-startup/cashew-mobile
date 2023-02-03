@@ -5,5 +5,4 @@ import org.koin.dsl.module
 
 val coreModule = module {
     single { HttpClientProvider(Const.BACKEND_URL, get()) }
-    single { get<HttpClientProvider>().createHttpClient() }
 }
