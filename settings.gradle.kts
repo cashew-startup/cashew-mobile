@@ -15,6 +15,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        mavenLocal()
     }
 
     versionCatalogs {
@@ -47,7 +48,8 @@ dependencyResolutionManagement {
 
             version("koin", "3.3.0")
             library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")
+
+            library("loader", "io.github.kursor1337", "kmm-data-loading-automation").version("0.1")
         }
     }
-
 }

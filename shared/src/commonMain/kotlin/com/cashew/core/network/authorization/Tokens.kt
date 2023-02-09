@@ -1,4 +1,4 @@
-package com.cashew.core.authorization
+package com.cashew.core.network.authorization
 
 import kotlin.jvm.JvmInline
 

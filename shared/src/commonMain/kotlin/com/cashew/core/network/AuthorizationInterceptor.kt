@@ -1,6 +1,6 @@
 package com.cashew.core.network
 
-import com.cashew.core.authorization.AccessTokenProvider
+import com.cashew.core.network.authorization.AccessTokenProvider
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.request.*
