@@ -3,6 +3,8 @@ plugins {
     kotlin("android")
 }
 
+val isLocalBuild = System.getenv("IS_CI") != "true"
+
 android {
     namespace = "com.cashew.android"
     compileSdk = 32
