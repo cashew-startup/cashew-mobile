@@ -16,6 +16,7 @@ fun AppTheme(
     CashewTheme(colors, typography) {
         MaterialTheme(
             colors = colors.toMaterialColors(),
+            typography = typography.toMaterialTypography(),
             content = content
         )
     }
