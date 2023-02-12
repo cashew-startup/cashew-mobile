@@ -43,7 +43,8 @@ dependencyResolutionManagement {
             )
 
             version("decompose", "0.8.0")
-            library("decompose", "com.arkivanov.decompose", "decompose").versionRef("decompose")
+            library("decompose-core", "com.arkivanov.decompose", "decompose").versionRef("decompose")
+            library("decompose-compose", "com.arkivanov.decompose", "extensions-compose-jetpack").versionRef("decompose")
 
             version("koin", "3.3.0")
             library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")
