@@ -42,7 +42,7 @@ dependencyResolutionManagement {
                 )
             )
 
-            version("decompose", "0.8.0")
+            version("decompose", "1.0.0")
             library("decompose-core", "com.arkivanov.decompose", "decompose").versionRef("decompose")
             library("decompose-compose", "com.arkivanov.decompose", "extensions-compose-jetpack").versionRef("decompose")
 

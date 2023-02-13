@@ -40,7 +40,10 @@ data class ButtonColors(
 )
 
 data class IconColors(
-    val primary: Color
+    val primary: Color,
+    val secondary: Color,
+    val contrast: Color,
+    val error: Color
 )
 
 fun Colors.toMaterialColors(): MaterialColors = MaterialColors(

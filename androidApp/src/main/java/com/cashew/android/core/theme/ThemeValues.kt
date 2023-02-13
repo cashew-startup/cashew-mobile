@@ -30,7 +30,10 @@ val LightAppColors = Colors(
         strokeSecondary = Color(0xFF56008A)
     ),
     icons = IconColors(
-        primary = Color(0xFF56008A)
+        primary = Color(0xFF56008A),
+        secondary = Color(0xFFAA80C5),
+        contrast = Color(0XFFFFFFFF),
+        error = Color(0xFF8A0000)
     )
 )
 

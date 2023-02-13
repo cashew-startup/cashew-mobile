@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.8.10"
+    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -56,9 +57,9 @@ kotlin {
 
 android {
     namespace = "com.cashew"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         minSdk = 26
-        targetSdk = 32
+        targetSdk = 33
     }
 }
