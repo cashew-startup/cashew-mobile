@@ -7,11 +7,11 @@ val isLocalBuild = System.getenv("IS_CI") != "true"
 
 android {
     namespace = "com.cashew.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.cashew.android"
         minSdk = 26
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -35,6 +35,8 @@ android {
 
 dependencies {
     implementation(libs.koin.core)
+    implementation(libs.decompose.core)
+    implementation(libs.decompose.compose)
 
     implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:1.2.1")

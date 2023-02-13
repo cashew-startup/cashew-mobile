@@ -3,7 +3,6 @@ package com.cashew.android.core.ui.widgets
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.material.TextFieldColors
 import androidx.compose.material.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -13,8 +12,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.cashew.android.R
 import com.cashew.android.core.theme.CashewTheme
-import kotlin.math.max
-import kotlin.math.sin
 
 @Composable
 fun CashewTextField(

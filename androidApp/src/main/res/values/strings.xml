@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="search">Search</string>
+    <string name="welcome_phrase_1">Welcome to</string>
+    <string name="welcome_phrase_2">Cashew</string>
+    <string name="welcome_get_started">Get started</string>
 </resources>
