@@ -25,6 +25,7 @@ kotlin {
                 implementation(libs.decompose.core)
                 implementation(libs.koin.core)
                 implementation(libs.loader)
+                implementation(libs.multiplatform.settings)
             }
         }
         val commonTest by getting {
@@ -32,7 +33,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(libs.android.security)
+            }
+        }
         val androidTest by getting
 //        val iosX64Main by getting
 //        val iosArm64Main by getting

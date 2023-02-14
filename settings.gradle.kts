@@ -50,6 +50,12 @@ dependencyResolutionManagement {
             library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")
 
             library("loader", "io.github.kursor1337", "kmm-data-loading-automation").version("0.1")
+
+            // Storage
+            library("multiplatform-settings", "com.russhwolf", "multiplatform-settings").version("1.0.0")
+
+            // Excrypted shared spref
+            library("android-security", "androidx.security", "security-crypto").version("1.1.0-alpha04")
         }
     }
 }
