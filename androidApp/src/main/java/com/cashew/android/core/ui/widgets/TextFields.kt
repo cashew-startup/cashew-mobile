@@ -5,6 +5,8 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -43,6 +45,8 @@ fun CashewTextField(
         MutableInteractionSource()
     },
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     contentPadding: PaddingValues = PaddingValues(
         vertical = 10.dp,
         horizontal = 15.dp
@@ -88,6 +92,8 @@ fun CashewTextField(
         cursorBrush = SolidColor(colors.cursorColor(isError).value),
         interactionSource = interactionSource,
         visualTransformation = visualTransformation,
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions,
         singleLine = singleLine,
         maxLines = maxLines,
         decorationBox = @Composable { innerTextField ->
@@ -132,7 +138,10 @@ fun PrimaryTextField(
     trailingIcon: @Composable (() -> Unit)? = null,
     singleLine: Boolean = true,
     maxLines: Int = 1,
-    shape: Shape = RoundedCornerShape(5.dp)
+    visualTransformation: VisualTransformation = VisualTransformation.None,
+    shape: Shape = RoundedCornerShape(5.dp),
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     CashewTextField(
         placeholder = hint,
@@ -145,7 +154,10 @@ fun PrimaryTextField(
         trailingIcon = trailingIcon,
         singleLine = singleLine,
         maxLines = maxLines,
-        shape = shape
+        shape = shape,
+        visualTransformation = visualTransformation,
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions
     )
 }
 
@@ -155,6 +167,8 @@ fun SearchTextField(
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
     isError: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     PrimaryTextField(
         hint = stringResource(id = R.string.search),
@@ -164,6 +178,8 @@ fun SearchTextField(
         singleLine = true,
         maxLines = 1,
         shape = RoundedCornerShape(15.dp),
-        isError = isError
+        isError = isError,
+        keyboardActions = keyboardActions,
+        keyboardOptions = keyboardOptions
     )
 }
