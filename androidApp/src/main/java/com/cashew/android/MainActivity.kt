@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = CashewTheme.colors.background.primary
                 ) {
-
+                    // TODO: add RootUi
                 }
             }
         }
