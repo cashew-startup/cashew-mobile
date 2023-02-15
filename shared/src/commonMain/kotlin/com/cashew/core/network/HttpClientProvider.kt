@@ -8,6 +8,7 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.coroutines.runBlocking
 
 class HttpClientProvider(
     private val backendUrl: String,
@@ -23,7 +24,9 @@ class HttpClientProvider(
             install(DefaultRequest) {
                 url(backendUrl)
                 if (isAuthorized) {
-                    bearerAuth(accessTokenProvider.accessToken?.value ?: "")
+                    runBlocking {
+                        bearerAuth(accessTokenProvider.getAccessToken()?.value ?: "")
+                    }
                 }
             }
 

@@ -19,7 +19,7 @@ fun RootUi(
     Children(stack = childStack, modifier = modifier) { child ->
         when (val instance = child.instance) {
             is RootComponent.Child.Welcome -> WelcomeUi(component = instance.component)
-
+            is RootComponent.Child.AuthorizationFlow -> TODO()
         }
     }
 }
