@@ -1,7 +1,5 @@
 package com.cashew.core.network.authorization
 
-import kotlin.jvm.JvmInline
-
 @JvmInline
 value class AccessToken(val value: String)
 
@@ -11,12 +9,12 @@ value class RefreshToken(val value: String)
 
 interface AccessTokenProvider {
 
-    val accessToken: AccessToken?
+    suspend fun getAccessToken(): AccessToken?
 
 }
 
 interface RefreshTokenProvider {
 
-    val refreshToken: RefreshToken?
+    suspend fun getRefreshToken(): RefreshToken?
 
 }

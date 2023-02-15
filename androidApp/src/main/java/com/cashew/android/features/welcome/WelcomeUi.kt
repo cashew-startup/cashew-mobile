@@ -63,7 +63,7 @@ fun WelcomeUi(
                     onClick = component::onGetStartedClick,
                     modifier = Modifier
                         .align(CenterHorizontally)
-                        .padding(bottom = 40.dp)
+                        .padding(bottom = 94.dp)
                 )
             }
         }
