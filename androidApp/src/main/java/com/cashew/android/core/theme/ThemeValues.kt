@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.cashew.android.R
@@ -44,7 +45,15 @@ val DarkAppColors = LightAppColors // not yet implemented
 
 val openSansFamily = FontFamily(
     Font(R.font.open_sans_bold, weight = FontWeight.Bold),
-    Font(R.font.open_sans_regular, weight = FontWeight.Normal)
+    Font(R.font.open_sans_regular, weight = FontWeight.Normal),
+    Font(R.font.open_sans_light, weight = FontWeight.Light),
+    Font(R.font.open_sans_medium, weight = FontWeight.Medium),
+    Font(R.font.open_sans_extra_bold, weight = FontWeight.ExtraBold),
+    Font(R.font.open_sans_bold_italic, weight = FontWeight.Bold, style = FontStyle.Italic),
+    Font(R.font.open_sans_medium_italic, weight = FontWeight.Medium, style = FontStyle.Italic),
+    Font(R.font.open_sans_light_italic, weight = FontWeight.Light, style = FontStyle.Italic),
+    Font(R.font.open_sans_italic, weight = FontWeight.Normal, style = FontStyle.Italic),
+    Font(R.font.open_sans_extra_bold_italic, weight = FontWeight.ExtraBold, style = FontStyle.Italic)
 )
 
 val AppTypography = Typography(
@@ -70,4 +79,3 @@ val AppTypography = Typography(
         )
     )
 )
-
