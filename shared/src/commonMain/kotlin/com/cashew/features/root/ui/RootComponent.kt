@@ -1,6 +1,7 @@
 package com.cashew.features.root.ui
 
 import com.arkivanov.decompose.router.stack.ChildStack
+import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
 import kotlinx.coroutines.flow.StateFlow
 
@@ -10,6 +11,8 @@ interface RootComponent {
 
     sealed interface Child {
         class Welcome(val component: WelcomeComponent) : Child
+
+        class AuthorizationFlow(val component: AuthorizationFlowComponent) : Child
     }
 
 }

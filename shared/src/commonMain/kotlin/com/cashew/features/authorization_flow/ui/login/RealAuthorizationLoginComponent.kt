@@ -5,7 +5,6 @@ import com.cashew.core.utils.DefaultNetworkCoroutineContext
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class RealAuthorizationLoginComponent(

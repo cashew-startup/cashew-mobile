@@ -7,8 +7,7 @@ import com.cashew.features.root.ui.RootComponent
 import org.koin.core.component.get
 
 fun ComponentFactory.createRootComponent(
-    componentContext: ComponentContext,
-    componentFactory: ComponentFactory
+    componentContext: ComponentContext
 ) : RootComponent {
     return RealRootComponent(componentContext, get())
 }
