@@ -19,6 +19,11 @@ class RealAuthorizationLoginComponent(
     override val usernameState: MutableStateFlow<String> = MutableStateFlow("")
     override val passwordState: MutableStateFlow<String> = MutableStateFlow("")
 
+    override val isUsernameErrorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    override val isPasswordErrorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    override val errorsState: MutableStateFlow<List<AuthorizationLoginComponent.Error>> =
+        MutableStateFlow(emptyList())
+
     override fun onLoginClick() {
         coroutineScope.launch {
             val result = authorizationRepository.login(
@@ -28,7 +33,7 @@ class RealAuthorizationLoginComponent(
 
             if (result is LoginResult.Success) {
                 onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
-            }
+            } else errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)
         }
     }
 

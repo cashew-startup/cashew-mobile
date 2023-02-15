@@ -4,4 +4,7 @@
     <string name="welcome_phrase_1">Welcome to</string>
     <string name="welcome_phrase_2">Cashew</string>
     <string name="welcome_get_started">Get started</string>
+    <string name="login_title">Log in</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
 </resources>
