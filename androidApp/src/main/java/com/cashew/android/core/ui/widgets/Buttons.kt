@@ -1,7 +1,9 @@
 package com.cashew.android.core.ui.widgets
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.OutlinedButton
@@ -9,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.cashew.android.core.theme.CashewTheme
@@ -21,7 +24,11 @@ fun CashewButton(
     backgroundDisabledColor: Color = CashewTheme.colors.button.primary,
     strokeColor: Color = CashewTheme.colors.button.strokePrimary,
     isEnabled: Boolean = true,
-    radius: Dp = 5.dp,
+    shape: Shape = RoundedCornerShape(5.dp),
+    contentPadding: PaddingValues = PaddingValues(
+        vertical = 10.dp,
+        horizontal = 15.dp
+    ),
     content: @Composable RowScope.() -> Unit
 ) {
 
@@ -35,9 +42,12 @@ fun CashewButton(
         colors = ButtonDefaults.buttonColors(
             backgroundColor = currentBackgroundColor
         ),
-        shape = RoundedCornerShape(radius),
+        shape = shape,
         modifier = modifier,
-        onClick = if (isEnabled) onClick else {{}},
+        onClick = {
+            if (isEnabled) onClick()
+        },
+        contentPadding = contentPadding,
         content = content
     )
 }
@@ -53,7 +63,7 @@ fun PrimaryButton(
     textColor: Color = CashewTheme.colors.text.contrast,
     textDisabledColor: Color = CashewTheme.colors.text.contrast,
     isEnabled: Boolean = true,
-    radius: Dp = 5.dp
+    shape: Shape = RoundedCornerShape(5.dp)
 ) {
 
     val currentTextColor = if (isEnabled) textColor else textDisabledColor
@@ -65,7 +75,7 @@ fun PrimaryButton(
         backgroundDisabledColor = backgroundDisabledColor,
         strokeColor = strokeColor,
         isEnabled = isEnabled,
-        radius = radius
+        shape = shape
     ) {
         Text(
             text = text,
@@ -86,7 +96,7 @@ fun SecondaryButton(
     textColor: Color = CashewTheme.colors.text.primary,
     textDisabledColor: Color = CashewTheme.colors.text.primary,
     isEnabled: Boolean = true,
-    radius: Dp = 15.dp
+    shape: Shape = RoundedCornerShape(15.dp)
 ) {
     PrimaryButton(
         text = text,
@@ -98,6 +108,6 @@ fun SecondaryButton(
         textColor = textColor,
         textDisabledColor = textDisabledColor,
         isEnabled = isEnabled,
-        radius = radius
+        shape = shape
     )
 }

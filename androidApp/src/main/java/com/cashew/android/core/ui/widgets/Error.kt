@@ -30,15 +30,15 @@ fun Error(
             painter = painterResource(id = R.drawable.ic_24_error),
             contentDescription = null,
             tint = CashewTheme.colors.icons.error,
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier.padding(
+                end = 7.dp
+            )
         )
 
         Text(
             text = text,
-            style = TextStyle(
-                color = CashewTheme.colors.text.error,
-                textAlign = TextAlign.Start
-            ),
+            style = CashewTheme.typography.caption.light,
+            color = CashewTheme.colors.text.error,
             overflow = TextOverflow.Ellipsis,
             maxLines = 2,
         )

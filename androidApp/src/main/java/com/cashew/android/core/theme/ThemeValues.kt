@@ -56,5 +56,11 @@ val AppTypography = Typography(
             fontWeight = FontWeight.Bold,
             fontSize = 24.sp
         )
+    ),
+    caption = CaptionTypography(
+        light = TextStyle(
+            fontWeight = FontWeight.Light,
+            fontSize = 12.sp
+        )
     )
 )
