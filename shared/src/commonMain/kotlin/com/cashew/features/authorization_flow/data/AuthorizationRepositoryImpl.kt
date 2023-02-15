@@ -25,8 +25,10 @@ class AuthorizationRepositoryImpl(
         val response = httpClient.post("/auth/login") {
             setBody(LoginRequestDTO(username, password))
         }.body<LoginResponseDTO>()
-        accessTokenStorage.saveAccessToken(AccessToken(response.token.accessToken))
-        refreshTokenStorage.saveRefreshToken(RefreshToken(response.token.refreshToken))
+        if (response.token != null) {
+            accessTokenStorage.saveAccessToken(AccessToken(response.token.accessToken))
+            refreshTokenStorage.saveRefreshToken(RefreshToken(response.token.refreshToken))
+        }
         return response.toDomain()
     }
 
@@ -34,8 +36,10 @@ class AuthorizationRepositoryImpl(
         val response = httpClient.post("/auth/register") {
             setBody(RegisterRequestDTO(username, password))
         }.body<RegisterResponseDTO>()
-        accessTokenStorage.saveAccessToken(AccessToken(response.token.accessToken))
-        refreshTokenStorage.saveRefreshToken(RefreshToken(response.token.refreshToken))
+        if (response.token != null) {
+            accessTokenStorage.saveAccessToken(AccessToken(response.token.accessToken))
+            refreshTokenStorage.saveRefreshToken(RefreshToken(response.token.refreshToken))
+        }
         return response.toDomain()
     }
 }

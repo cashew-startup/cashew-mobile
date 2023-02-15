@@ -4,12 +4,22 @@ import com.cashew.core.network.authorization.AccessToken
 import com.cashew.core.network.authorization.RefreshToken
 import com.cashew.features.authorization_flow.data.dto.RegisterResponseDTO
 
-data class RegisterResult(
-    val accessToken: AccessToken,
-    val refreshToken: RefreshToken
-)
+sealed class RegisterResult {
+    data class Success(
+        val accessToken: AccessToken,
+        val refreshToken: RefreshToken
+    ) : RegisterResult()
 
-fun RegisterResponseDTO.toDomain() = RegisterResult(
-    accessToken = AccessToken(this.token.accessToken),
-    refreshToken = RefreshToken(this.token.refreshToken)
-)
+    data class Failure(
+        val description: String
+    ) : RegisterResult()
+}
+
+fun RegisterResponseDTO.toDomain(): RegisterResult {
+    return if (this.token != null) {
+        RegisterResult.Success(
+            accessToken = AccessToken(this.token.accessToken),
+            refreshToken = RefreshToken(this.token.refreshToken)
+        )
+    } else RegisterResult.Failure(description = this.description)
+}

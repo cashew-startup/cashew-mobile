@@ -10,5 +10,5 @@ class RegisterRequestDTO(
 class RegisterResponseDTO(
     val isSignUp: Boolean,
     val description: String,
-    val token: TokenResponseDTO
+    val token: TokenResponseDTO?
 )

@@ -4,7 +4,7 @@ package com.cashew.features.authorization_flow.data.dto
 class LoginResponseDTO(
     val isLogin: Boolean,
     val username: String,
-    val token: TokenResponseDTO
+    val token: TokenResponseDTO?
 )
 
 @kotlinx.serialization.Serializable

@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.utils.DefaultNetworkCoroutineContext
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
+import com.cashew.features.authorization_flow.domain.LoginResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -20,11 +21,14 @@ class RealAuthorizationLoginComponent(
 
     override fun onLoginClick() {
         coroutineScope.launch {
-            authorizationRepository.login(
+            val result = authorizationRepository.login(
                 username = usernameState.value,
                 password = passwordState.value
             )
-            onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
+
+            if (result is LoginResult.Success) {
+                onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
+            }
         }
     }
 
