@@ -5,11 +5,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Icon
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -17,10 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cashew.android.R
 import com.cashew.android.core.theme.AppTheme
-import com.cashew.android.core.ui.widgets.Error
-import com.cashew.android.core.ui.widgets.PrimaryButton
-import com.cashew.android.core.ui.widgets.PrimaryTextField
-import com.cashew.android.core.ui.widgets.Title
+import com.cashew.android.core.theme.CashewTheme
+import com.cashew.android.core.ui.widgets.*
 import com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -36,7 +36,20 @@ fun AuthorizationRegisterUi(
     val errors by component.errorsState.collectAsState()
 
     Scaffold(
-        modifier = modifier
+        modifier = modifier,
+        topBar = {
+            Toolbar(
+                navigationIcon = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_32_arrow_back),
+                        tint = CashewTheme.colors.icons.primary,
+                        contentDescription = null,
+                        modifier = Modifier.padding(12.dp)
+                    )
+                },
+                onNavigationIconClick = component::onBackPressed
+            )
+        }
     ) { paddingValues ->
         Column(
             verticalArrangement = Arrangement.Center,
