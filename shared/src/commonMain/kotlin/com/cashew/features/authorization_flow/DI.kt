@@ -2,7 +2,6 @@ package com.cashew.features.authorization_flow
 
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.ComponentFactory
-import com.cashew.core.network.HttpClientProvider
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
 import com.cashew.features.authorization_flow.data.AuthorizationRepositoryImpl
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
@@ -31,13 +30,13 @@ fun ComponentFactory.createAuthorizationLoginComponent(
     componentContext: ComponentContext,
     onOutput: (AuthorizationLoginComponent.Output) -> Unit
 ): AuthorizationLoginComponent {
-    return RealAuthorizationLoginComponent(componentContext, onOutput, get())
+    return RealAuthorizationLoginComponent(componentContext, onOutput, get(), get())
 }
 
 fun ComponentFactory.createAuthorizationRegisterComponent(
     componentContext: ComponentContext,
     onOutput: (AuthorizationRegisterComponent.Output) -> Unit
 ): AuthorizationRegisterComponent {
-    return RealAuthorizationRegisterComponent(componentContext, onOutput, get())
+    return RealAuthorizationRegisterComponent(componentContext, onOutput, get(), get())
 }
 

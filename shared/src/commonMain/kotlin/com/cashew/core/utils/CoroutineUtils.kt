@@ -7,8 +7,8 @@ import kotlinx.coroutines.launch
 
 fun CoroutineScope.safeLaunch(
     exceptionHandler: ExceptionHandler,
+    onExceptionHandled: (Exception) -> Unit = {},
     block: suspend () -> Unit,
-    onExceptionHandled: (Exception) -> Unit
 ) = launch {
     try {
         block()

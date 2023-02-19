@@ -1,16 +1,21 @@
 package com.cashew.features.authorization_flow.ui.register
 
 import com.arkivanov.decompose.ComponentContext
+import com.cashew.core.network.exceptions.ClientRequestException
+import com.cashew.core.network.exceptions.ExceptionHandler
 import com.cashew.core.utils.DefaultNetworkCoroutineContext
 import com.cashew.core.utils.componentCoroutineScope
+import com.cashew.core.utils.safeLaunch
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
+
+private const val HTTP_CONFLICT_CODE = 409
 
 class RealAuthorizationRegisterComponent(
     componentContext: ComponentContext,
     private val onOutput: (AuthorizationRegisterComponent.Output) -> Unit,
-    private val authorizationRepository: AuthorizationRepository
+    private val authorizationRepository: AuthorizationRepository,
+    private val exceptionHandler: ExceptionHandler
 ) : ComponentContext by componentContext, AuthorizationRegisterComponent {
 
     private val coroutineScope = componentCoroutineScope(DefaultNetworkCoroutineContext)
@@ -26,7 +31,15 @@ class RealAuthorizationRegisterComponent(
 
     override fun onCreateClick() {
         if (!validateCredentials()) return
-        coroutineScope.launch {
+        coroutineScope.safeLaunch(
+            exceptionHandler,
+            onExceptionHandled = {
+                if (it !is ClientRequestException) return@safeLaunch
+                if (it.code == HTTP_CONFLICT_CODE) {
+                    errorsState.value = listOf(AuthorizationRegisterComponent.Error.UserAlreadyExists)
+                }
+            }
+        ) {
             authorizationRepository.register(
                 username = usernameState.value,
                 password = passwordState.value

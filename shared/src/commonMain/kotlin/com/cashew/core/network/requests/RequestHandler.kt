@@ -1,13 +1,10 @@
 package com.cashew.core.network.requests
 
 import com.cashew.core.network.HttpClientProvider
-import com.cashew.core.network.authorization.TokenRefresher
 import com.cashew.core.network.exceptions.ExceptionMapper
-import com.cashew.core.network.exceptions.UnauthorizedException
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.statement.*
-import io.ktor.http.*
 
 class RequestHandler(
     val httpClientProvider: HttpClientProvider,
