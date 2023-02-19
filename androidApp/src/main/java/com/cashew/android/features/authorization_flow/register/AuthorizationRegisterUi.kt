@@ -147,6 +147,7 @@ fun getTextFromError(error: AuthorizationRegisterComponent.Error): Int {
         AuthorizationRegisterComponent.Error.ShortUsername -> R.string.register_error_short_username
         AuthorizationRegisterComponent.Error.ShortPassword -> R.string.register_error_short_password
         AuthorizationRegisterComponent.Error.PasswordsNotMatch -> R.string.register_error_passwords_not_match
+        AuthorizationRegisterComponent.Error.UserAlreadyExists -> R.string.register_error_user_already_exists
     }
 
 }

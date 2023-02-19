@@ -23,7 +23,7 @@ interface AuthorizationRegisterComponent {
     fun onConfirmPasswordChanged(changedConfirmPassword: String)
 
     enum class Error {
-        ShortUsername, ShortPassword, PasswordsNotMatch
+        ShortUsername, ShortPassword, PasswordsNotMatch, UserAlreadyExists
     }
 
     sealed interface Output {

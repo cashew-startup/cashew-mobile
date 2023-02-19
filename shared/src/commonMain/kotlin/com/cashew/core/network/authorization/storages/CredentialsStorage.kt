@@ -1,6 +1,9 @@
 package com.cashew.core.network.authorization.storages
 
-import com.cashew.core.network.authorization.*
+import com.cashew.core.network.authorization.Credentials
+import com.cashew.core.network.authorization.Password
+import com.cashew.core.network.authorization.UserId
+import com.cashew.core.network.authorization.Username
 import com.cashew.core.network.authorization.providers.CredentialsProvider
 
 interface CredentialsStorage: CredentialsProvider {

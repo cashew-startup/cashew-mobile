@@ -1,12 +1,12 @@
 package com.cashew.core.network.authorization
 
+import com.cashew.core.network.authorization.providers.CredentialsProvider
+import com.cashew.core.network.authorization.storages.AccessTokenStorage
+import com.cashew.core.network.authorization.storages.RefreshTokenStorage
 import com.cashew.core.network.dto.LoginRequestDTO
 import com.cashew.core.network.dto.LoginResponseDTO
 import com.cashew.core.network.dto.TokenRequestDTO
 import com.cashew.core.network.dto.TokenResponseDTO
-import com.cashew.core.network.authorization.providers.CredentialsProvider
-import com.cashew.core.network.authorization.storages.AccessTokenStorage
-import com.cashew.core.network.authorization.storages.RefreshTokenStorage
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*

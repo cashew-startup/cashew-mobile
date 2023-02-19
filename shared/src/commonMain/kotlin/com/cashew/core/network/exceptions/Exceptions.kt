@@ -14,19 +14,19 @@ class NoInternetException(
 ) : AppException("No internet!", cause)
 
 class NoResponseException(
-    code: Int?,
+    val code: Int?,
     cause: Throwable?
 ) : AppException("No response from the server!", cause)
 
 class SerializationException(cause: Throwable?) : AppException("Invalid data for serialization!", cause)
 
 class ClientRequestException(
-    code: Int,
+    val code: Int,
     cause: Throwable?
 ) : AppException("Request error", cause)
 
 class ServerResponseException(
-    code: Int,
+    val code: Int,
     cause: Throwable?
 ) : AppException("Server response error, bad response", cause)
 
