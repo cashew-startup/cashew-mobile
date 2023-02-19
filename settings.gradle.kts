@@ -30,21 +30,29 @@ dependencyResolutionManagement {
                 "io.ktor",
                 "ktor-serialization-kotlinx-json"
             ).versionRef("ktor")
+            library("ktor-client-auth", "io.ktor", "ktor-client-auth").versionRef("ktor")
             bundle(
                 "ktor-client",
                 listOf(
                     "ktor-client-core",
-                    "ktor-client-cio",
                     "ktor-client-serialization",
                     "ktor-client-logging",
                     "ktor-client-contentNegotiation",
+                    "ktor-client-auth",
                     "ktor-serialization-kotlinx-json"
                 )
             )
 
+            library("ktor-client-cio", "io.ktor", "ktor-client-cio").versionRef("ktor")
+            library("ktor-client-okhttp", "io.ktor", "ktor-client-okhttp").versionRef("ktor")
+
             version("decompose", "1.0.0")
             library("decompose-core", "com.arkivanov.decompose", "decompose").versionRef("decompose")
-            library("decompose-compose", "com.arkivanov.decompose", "extensions-compose-jetpack").versionRef("decompose")
+            library(
+                "decompose-compose",
+                "com.arkivanov.decompose",
+                "extensions-compose-jetpack"
+            ).versionRef("decompose")
 
             version("koin", "3.3.0")
             library("koin-core", "io.insert-koin", "koin-core").versionRef("koin")

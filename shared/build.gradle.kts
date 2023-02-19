@@ -36,6 +36,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(libs.android.security)
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val androidTest by getting
