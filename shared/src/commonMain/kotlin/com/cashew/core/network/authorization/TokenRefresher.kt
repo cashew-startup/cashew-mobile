@@ -1,9 +1,9 @@
 package com.cashew.core.network.authorization
 
-import com.cashew.core.network.authorization.dto.LoginRequestDTO
-import com.cashew.core.network.authorization.dto.LoginResponseDTO
-import com.cashew.core.network.authorization.dto.TokenRequestDTO
-import com.cashew.core.network.authorization.dto.TokenResponseDTO
+import com.cashew.core.network.dto.LoginRequestDTO
+import com.cashew.core.network.dto.LoginResponseDTO
+import com.cashew.core.network.dto.TokenRequestDTO
+import com.cashew.core.network.dto.TokenResponseDTO
 import com.cashew.core.network.authorization.providers.CredentialsProvider
 import com.cashew.core.network.authorization.storages.AccessTokenStorage
 import com.cashew.core.network.authorization.storages.RefreshTokenStorage
@@ -35,8 +35,9 @@ class TokenRefresher(
             )
         }.body<LoginResponseDTO>()
 
-        if (response.token == null) return false
-        saveTokens(response.token.accessToken, response.token.refreshToken)
+        val newAccessToken = response.token?.accessToken ?: return false
+        val newRefreshToken = response.token.refreshToken ?: return false
+        saveTokens(newAccessToken, newRefreshToken)
         return true
     }
 
@@ -52,7 +53,11 @@ class TokenRefresher(
                     )
                 )
             }.body<TokenResponseDTO>()
-            saveTokens(response.accessToken, response.refreshToken)
+
+            val newAccessToken = response.accessToken ?: return false
+            val newRefreshToken = response.refreshToken ?: return false
+
+            saveTokens(newAccessToken, newRefreshToken)
             true
         } catch (e: ClientRequestException) {
             if (e.response.status != HttpStatusCode.NotFound) throw e

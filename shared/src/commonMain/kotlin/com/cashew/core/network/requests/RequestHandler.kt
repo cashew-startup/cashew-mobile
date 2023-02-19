@@ -7,6 +7,7 @@ import com.cashew.core.network.exceptions.UnauthorizedException
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.statement.*
+import io.ktor.http.*
 
 class RequestHandler(
     val httpClientProvider: HttpClientProvider,

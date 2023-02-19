@@ -2,6 +2,6 @@ package com.cashew.core
 
 object Const {
 
-    const val BACKEND_URL = "1204051-ct86910.tw1.ru/api"
+    const val BACKEND_URL = "194.35.116.155:8081/api"
 
 }

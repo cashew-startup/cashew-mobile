@@ -3,15 +3,16 @@ package com.cashew.core.network
 import com.cashew.core.network.authorization.TokenRefresher
 import com.cashew.core.network.authorization.providers.AccessTokenProvider
 import com.cashew.core.network.authorization.providers.RefreshTokenProvider
-import com.cashew.core.network.exceptions.ExceptionMapper
 import io.ktor.client.*
-import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.json.Json
 
 class HttpClientProvider(
     private val backendUrl: String,
@@ -22,12 +23,24 @@ class HttpClientProvider(
     val authorizedHttpClient = createHttpClient(isAuthorized = true)
     val unauthorizedHttpClient = createHttpClient(isAuthorized = false)
 
+    @OptIn(ExperimentalSerializationApi::class)
     private fun createHttpClient(isAuthorized: Boolean): HttpClient {
-        return HttpClient(CIO) {
-            install(ContentNegotiation) { json() }
+        return HttpClient {
+            install(ContentNegotiation) { json(
+                Json {
+                    ignoreUnknownKeys = true
+                    isLenient = true
+                    explicitNulls = false
+                    encodeDefaults = true
+                    prettyPrint = true
+                }
+            ) }
             install(Logging) { level = LogLevel.ALL }
             install(DefaultRequest) {
-                url(backendUrl)
+                url {
+                    host = backendUrl
+                }
+                contentType(ContentType.Application.Json)
             }
 
             if (isAuthorized) {
@@ -52,7 +65,6 @@ class HttpClientProvider(
                     }
                 }
             }
-
             expectSuccess = true
         }
     }

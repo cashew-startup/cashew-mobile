@@ -16,11 +16,7 @@ import org.koin.dsl.module
 
 val authorizationModule = module {
     single<AuthorizationRepository> {
-        AuthorizationRepositoryImpl(
-            get<HttpClientProvider>().unauthorizedHttpClient,
-            get(),
-            get()
-        )
+        AuthorizationRepositoryImpl(get(), get(), get())
     }
 }
 

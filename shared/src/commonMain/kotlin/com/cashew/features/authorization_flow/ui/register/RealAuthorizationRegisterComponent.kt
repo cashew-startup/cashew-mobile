@@ -4,7 +4,6 @@ import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.utils.DefaultNetworkCoroutineContext
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
-import com.cashew.features.authorization_flow.domain.RegisterResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
@@ -28,11 +27,11 @@ class RealAuthorizationRegisterComponent(
     override fun onCreateClick() {
         if (!validateCredentials()) return
         coroutineScope.launch {
-            val result = authorizationRepository.register(
+            authorizationRepository.register(
                 username = usernameState.value,
                 password = passwordState.value
             )
-            if (result is RegisterResult.Success) onOutput(AuthorizationRegisterComponent.Output.OnAccountCreated)
+            onOutput(AuthorizationRegisterComponent.Output.OnAccountCreated)
         }
     }
 
