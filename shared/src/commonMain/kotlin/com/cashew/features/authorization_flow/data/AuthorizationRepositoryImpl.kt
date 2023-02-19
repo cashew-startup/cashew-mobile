@@ -23,13 +23,14 @@ class AuthorizationRepositoryImpl(
             val response = post("auth/login") {
                 setBody(LoginRequestDTO(username, password))
             }
+            println(response.status.value)
             println(response.bodyAsText())
             response
         }
         val accessToken = response.token?.accessToken ?: return
         val refreshToken = response.token.refreshToken ?: return
-        accessTokenStorage.saveAccessToken(AccessToken(response.token.accessToken))
-        refreshTokenStorage.saveRefreshToken(RefreshToken(response.token.refreshToken))
+        accessTokenStorage.saveAccessToken(AccessToken(accessToken))
+        refreshTokenStorage.saveRefreshToken(RefreshToken(refreshToken))
 
     }
 
