@@ -2,12 +2,12 @@ package com.cashew.features.authorization_flow.data
 
 import com.cashew.core.network.authorization.AccessToken
 import com.cashew.core.network.authorization.RefreshToken
-import com.cashew.features.authorization_flow.data.dto.LoginRequestDTO
-import com.cashew.features.authorization_flow.data.dto.LoginResponseDTO
-import com.cashew.features.authorization_flow.data.dto.RegisterRequestDTO
-import com.cashew.features.authorization_flow.data.dto.RegisterResponseDTO
-import com.cashew.features.authorization_flow.data.storages.AccessTokenStorage
-import com.cashew.features.authorization_flow.data.storages.RefreshTokenStorage
+import com.cashew.core.network.authorization.dto.LoginRequestDTO
+import com.cashew.core.network.authorization.dto.LoginResponseDTO
+import com.cashew.core.network.authorization.dto.RegisterRequestDTO
+import com.cashew.core.network.authorization.dto.RegisterResponseDTO
+import com.cashew.core.network.authorization.storages.AccessTokenStorage
+import com.cashew.core.network.authorization.storages.RefreshTokenStorage
 import com.cashew.features.authorization_flow.domain.LoginResult
 import com.cashew.features.authorization_flow.domain.RegisterResult
 import com.cashew.features.authorization_flow.domain.toDomain

@@ -2,7 +2,7 @@ package com.cashew.features.authorization_flow.domain
 
 import com.cashew.core.network.authorization.AccessToken
 import com.cashew.core.network.authorization.RefreshToken
-import com.cashew.features.authorization_flow.data.dto.LoginResponseDTO
+import com.cashew.core.network.authorization.dto.LoginResponseDTO
 
 sealed class LoginResult {
     data class Success(

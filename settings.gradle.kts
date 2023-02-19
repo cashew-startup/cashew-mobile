@@ -30,6 +30,7 @@ dependencyResolutionManagement {
                 "io.ktor",
                 "ktor-serialization-kotlinx-json"
             ).versionRef("ktor")
+            library("ktor-client-auth", "io.ktor", "ktor-client-auth").versionRef("ktor")
             bundle(
                 "ktor-client",
                 listOf(
@@ -38,6 +39,7 @@ dependencyResolutionManagement {
                     "ktor-client-serialization",
                     "ktor-client-logging",
                     "ktor-client-contentNegotiation",
+                    "ktor-client-auth",
                     "ktor-serialization-kotlinx-json"
                 )
             )
