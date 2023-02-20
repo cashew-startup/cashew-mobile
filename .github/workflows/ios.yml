@@ -19,12 +19,12 @@ jobs:
             for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
             for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
       - name: Install Gem dependencies
+        working-directory: ./iosApp
         run: |
-            cd ~/cashew-mobile/iosApp
             bundle install
       - name: Fastlane Tests
+        working-directory: ./iosApp
         run: |
-            cd ~/cashew-mobile/iosApp
             fastlane scan
       - name: Checkout
         uses: actions/checkout@v3
