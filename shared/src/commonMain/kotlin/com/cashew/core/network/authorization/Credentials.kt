@@ -1,11 +1,12 @@
 package com.cashew.core.network.authorization
 
+import kotlin.jvm.JvmInline
+
 @JvmInline
 value class Password(val value: String)
 
 @JvmInline
 value class Username(val value: String)
-
 @JvmInline
 value class UserId(val value: String)
 
