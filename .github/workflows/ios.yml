@@ -15,8 +15,9 @@ jobs:
 
     steps:
       - name: Warm up Simulator
-        run: |
-            xcrun instruments -w 'iPhone 7 (10.3)' || sleep 15
+        uses: futureware-tech/simulator-action@v2
+        with:
+          model: 'iPhone 11' 
       - name: Checkout
         uses: actions/checkout@v3
       - name: Allow proper XCode dependency resolution
