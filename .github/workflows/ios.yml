@@ -12,6 +12,20 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Allow proper XCode dependency resolution
+        run: |
+            sudo defaults write com.apple.dt.Xcode IDEPackageSupportUseBuiltinSCM YES
+            rm ~/.ssh/id_rsa || true
+            for ip in $(dig @8.8.8.8 bitbucket.org +short); do ssh-keyscan bitbucket.org,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
+            for ip in $(dig @8.8.8.8 github.com +short); do ssh-keyscan github.com,$ip; ssh-keyscan $ip; done 2>/dev/null >> ~/.ssh/known_hosts || true
+      - name: Install Gem dependencies
+        run: |
+            cd iosApp
+            bundle install
+      - name: Fastlane Tests
+        run: |
+            cd iosApp
+            fastlane scan
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
