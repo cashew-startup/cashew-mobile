@@ -6,6 +6,7 @@ import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.essenty.parcelable.Parcelable
+import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
 import com.cashew.core.utils.toStateFlow
 import com.cashew.features.authorization_flow.createAuthorizationFlowComponent
@@ -13,7 +14,6 @@ import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 import com.cashew.features.welcome.createWelcomeComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.parcelize.Parcelize
 
 class RealRootComponent(
     componentContext: ComponentContext,
