@@ -5,6 +5,8 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+    
+
 
 jobs:
   build:
@@ -12,6 +14,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Warm up Simulator
+        run: |
+            xcrun instruments -w 'iPhone 7 (10.3)' || sleep 15
       - name: Checkout
         uses: actions/checkout@v3
       - name: Allow proper XCode dependency resolution
