@@ -24,7 +24,6 @@ import com.cashew.android.R
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
-import com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
