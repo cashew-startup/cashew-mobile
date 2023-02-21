@@ -6,9 +6,9 @@ import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences.PrefKeyEncryptionScheme
 import androidx.security.crypto.MasterKey
 import com.cashew.core.network.authorization.*
-import com.cashew.core.network.authorization.storages.AccessTokenStorage
-import com.cashew.core.network.authorization.storages.CredentialsStorage
-import com.cashew.core.network.authorization.storages.RefreshTokenStorage
+import com.cashew.core.storage.storages.AccessTokenStorage
+import com.cashew.core.storage.storages.CredentialsStorage
+import com.cashew.core.storage.storages.RefreshTokenStorage
 
 internal class AndroidEncryptedStorage(
     context: Context

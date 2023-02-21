@@ -1,9 +1,9 @@
 package com.cashew.core.network
 
 import com.cashew.core.network.authorization.TokenRefresher
-import com.cashew.core.network.authorization.providers.AccessTokenProvider
-import com.cashew.core.network.authorization.providers.RefreshTokenProvider
 import com.cashew.core.network.exceptions.ExceptionMapper
+import com.cashew.core.storage.providers.AccessTokenProvider
+import com.cashew.core.storage.providers.RefreshTokenProvider
 import io.ktor.client.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
