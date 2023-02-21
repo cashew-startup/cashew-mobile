@@ -1,7 +1,7 @@
-package com.cashew.core.network.authorization.storages
+package com.cashew.core.storage.storages
 
 import com.cashew.core.network.authorization.AccessToken
-import com.cashew.core.network.authorization.providers.AccessTokenProvider
+import com.cashew.core.storage.providers.AccessTokenProvider
 
 interface AccessTokenStorage : AccessTokenProvider {
 

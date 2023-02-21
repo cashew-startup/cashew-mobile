@@ -1,7 +1,7 @@
-package com.cashew.core.network.authorization.storages
+package com.cashew.core.storage.storages
 
 import com.cashew.core.network.authorization.RefreshToken
-import com.cashew.core.network.authorization.providers.RefreshTokenProvider
+import com.cashew.core.storage.providers.RefreshTokenProvider
 
 interface RefreshTokenStorage : RefreshTokenProvider {
 
