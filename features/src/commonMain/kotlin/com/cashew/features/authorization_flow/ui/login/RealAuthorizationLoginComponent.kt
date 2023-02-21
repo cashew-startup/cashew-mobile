@@ -3,7 +3,6 @@ package com.cashew.features.authorization_flow.ui.login
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.network.exceptions.ExceptionHandler
 import com.cashew.core.network.exceptions.UnauthorizedException
-import com.cashew.core.utils.DefaultNetworkCoroutineContext
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.core.utils.safeLaunch
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
@@ -16,7 +15,7 @@ class RealAuthorizationLoginComponent(
     private val exceptionHandler: ExceptionHandler
 ) : ComponentContext by componentContext, AuthorizationLoginComponent {
 
-    private val coroutineScope = componentCoroutineScope(DefaultNetworkCoroutineContext)
+    private val coroutineScope = componentCoroutineScope()
 
     override val usernameState: MutableStateFlow<String> = MutableStateFlow("")
     override val passwordState: MutableStateFlow<String> = MutableStateFlow("")
