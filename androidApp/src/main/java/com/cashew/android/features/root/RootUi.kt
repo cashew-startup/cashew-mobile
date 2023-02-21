@@ -11,7 +11,7 @@ import com.cashew.features.root.ui.RootComponent
 
 @Composable
 fun RootUi(
-    component: RootComponent,
+    component: com.cashew.features.root.ui.RootComponent,
     modifier: Modifier = Modifier
 ) {
 
@@ -19,8 +19,8 @@ fun RootUi(
 
     Children(stack = childStack, modifier = modifier) { child ->
         when (val instance = child.instance) {
-            is RootComponent.Child.Welcome -> WelcomeUi(component = instance.component)
-            is RootComponent.Child.AuthorizationFlow -> AuthorizationFlowUi(component = instance.component)
+            is com.cashew.features.root.ui.RootComponent.Child.Welcome -> WelcomeUi(component = instance.component)
+            is com.cashew.features.root.ui.RootComponent.Child.AuthorizationFlow -> AuthorizationFlowUi(component = instance.component)
         }
     }
 }

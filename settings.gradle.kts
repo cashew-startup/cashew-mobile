@@ -8,7 +8,7 @@ pluginManagement {
 
 rootProject.name = "Cashew"
 include(":androidApp")
-include(":shared")
+include(":core")
 
 dependencyResolutionManagement {
     repositories {
@@ -97,3 +97,4 @@ dependencyResolutionManagement {
         }
     }
 }
+include(":features")

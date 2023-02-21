@@ -13,7 +13,7 @@ import com.cashew.features.main.ui.MainComponent
 
 @Composable
 fun MainUi(
-    component: MainComponent,
+    component: com.cashew.features.main.ui.MainComponent,
     modifier:  Modifier = Modifier
 )
 {
@@ -38,6 +38,6 @@ fun MainUiPreview() {
     }
 }
 
-class FakeMainComponent: MainComponent {
+class FakeMainComponent: com.cashew.features.main.ui.MainComponent {
 
 }

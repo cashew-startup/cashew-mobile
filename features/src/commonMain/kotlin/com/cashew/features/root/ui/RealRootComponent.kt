@@ -39,7 +39,10 @@ class RealRootComponent(
             )
 
             ChildConfig.AuthorizationFlow -> RootComponent.Child.AuthorizationFlow(
-                componentFactory.createAuthorizationFlowComponent(componentContext, ::onAuthorizationFlowOutput)
+                componentFactory.createAuthorizationFlowComponent(
+                    componentContext,
+                    ::onAuthorizationFlowOutput
+                )
             )
         }
     }

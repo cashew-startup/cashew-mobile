@@ -42,8 +42,8 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.decompose.core)
     implementation(libs.decompose.compose)
-
-    implementation(project(":shared"))
+    implementation(project(":core"))
+    implementation(project(":features"))
 
     implementation(libs.bundles.compose)
 }
