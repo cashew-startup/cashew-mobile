@@ -8,22 +8,21 @@ import com.cashew.core.network.dto.LoginRequestDTO
 import com.cashew.core.network.dto.LoginResponseDTO
 import com.cashew.core.network.dto.RegisterRequestDTO
 import com.cashew.core.network.dto.RegisterResponseDTO
-import com.cashew.core.network.requests.RequestHandler
+import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 
 class AuthorizationRepositoryImpl(
-    private val requestHandler: RequestHandler,
+    private val httpClient: HttpClient,
     private val accessTokenStorage: AccessTokenStorage,
     private val refreshTokenStorage: RefreshTokenStorage
 ) : AuthorizationRepository {
 
     override suspend fun login(username: String, password: String) {
-        val response: LoginResponseDTO = requestHandler.request {
-            post("auth/login") {
-                setBody(LoginRequestDTO(username, password))
-            }
-        }
+        val response: LoginResponseDTO = httpClient.post("auth/login") {
+            setBody(LoginRequestDTO(username, password))
+        }.body()
+
         val accessToken = response.token?.accessToken ?: return
         val refreshToken = response.token?.refreshToken ?: return
         accessTokenStorage.saveAccessToken(AccessToken(accessToken))
@@ -32,11 +31,10 @@ class AuthorizationRepositoryImpl(
     }
 
     override suspend fun register(username: String, password: String) {
-        val response: RegisterResponseDTO = requestHandler.request {
-            post("auth/register") {
-                setBody(RegisterRequestDTO(username, password))
-            }
-        }
+        val response: RegisterResponseDTO = httpClient.post("auth/register") {
+            setBody(RegisterRequestDTO(username, password))
+        }.body()
+
         val accessToken = response.token?.accessToken ?: return
         val refreshToken = response.token?.refreshToken ?: return
         accessTokenStorage.saveAccessToken(AccessToken(accessToken))
