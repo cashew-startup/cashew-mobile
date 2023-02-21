@@ -2,15 +2,14 @@ package com.cashew.features.authorization_flow.data
 
 import com.cashew.core.network.authorization.AccessToken
 import com.cashew.core.network.authorization.RefreshToken
-import com.cashew.core.network.authorization.storages.AccessTokenStorage
-import com.cashew.core.network.authorization.storages.RefreshTokenStorage
 import com.cashew.core.network.dto.LoginRequestDTO
 import com.cashew.core.network.dto.LoginResponseDTO
 import com.cashew.core.network.dto.RegisterRequestDTO
 import com.cashew.core.network.dto.RegisterResponseDTO
 import com.cashew.core.network.requests.RequestHandler
+import com.cashew.core.storage.storages.AccessTokenStorage
+import com.cashew.core.storage.storages.RefreshTokenStorage
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
 
 class AuthorizationRepositoryImpl(
     private val requestHandler: RequestHandler,
