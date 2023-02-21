@@ -32,11 +32,17 @@ class RealAuthorizationFlowComponent(
         componentContext: ComponentContext
     ): AuthorizationFlowComponent.Child = when (childConfig) {
         ChildConfig.Login -> AuthorizationFlowComponent.Child.Login(
-            componentFactory.createAuthorizationLoginComponent(componentContext, ::onAuthorizationLoginOutput)
+            componentFactory.createAuthorizationLoginComponent(
+                componentContext,
+                ::onAuthorizationLoginOutput
+            )
         )
 
         ChildConfig.Register -> AuthorizationFlowComponent.Child.Register(
-            componentFactory.createAuthorizationRegisterComponent(componentContext, ::onAuthorizationRegisterOutput)
+            componentFactory.createAuthorizationRegisterComponent(
+                componentContext,
+                ::onAuthorizationRegisterOutput
+            )
         )
     }
 
@@ -51,7 +57,9 @@ class RealAuthorizationFlowComponent(
 
     private fun onAuthorizationLoginOutput(output: AuthorizationLoginComponent.Output) {
         when (output) {
-            AuthorizationLoginComponent.Output.OnCreateNewAccountRequested -> navigation.push(ChildConfig.Register)
+            AuthorizationLoginComponent.Output.OnCreateNewAccountRequested -> navigation.push(
+                ChildConfig.Register
+            )
             AuthorizationLoginComponent.Output.OnLoggedIn -> {
                 onOutput(AuthorizationFlowComponent.Output.OnAccountAvailable)
             }

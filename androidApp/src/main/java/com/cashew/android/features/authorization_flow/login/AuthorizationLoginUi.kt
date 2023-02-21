@@ -30,7 +30,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun AuthorizationLoginUi(
-    component: AuthorizationLoginComponent,
+    component: com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent,
     modifier: Modifier = Modifier
 ) {
 
@@ -133,9 +133,9 @@ fun AuthorizationLoginUi(
 }
 
 @Composable
-fun getTextFromError(error: AuthorizationLoginComponent.Error): Int {
+fun getTextFromError(error: com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error): Int {
     return when (error) {
-        AuthorizationLoginComponent.Error.InvalidCredentials -> R.string.login_error_invalid_credentials
+        com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error.InvalidCredentials -> R.string.login_error_invalid_credentials
     }
 }
 
@@ -147,14 +147,15 @@ fun AuthorizationLoginUiPreview() {
     }
 }
 
-class FakeAuthorizationLoginComponent : AuthorizationLoginComponent {
+class FakeAuthorizationLoginComponent :
+    com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent {
 
     override val usernameState: StateFlow<String> = MutableStateFlow("Username")
     override val passwordState: StateFlow<String> = MutableStateFlow("Password")
     override val isUsernameErrorState: StateFlow<Boolean> = MutableStateFlow(false)
     override val isPasswordErrorState: StateFlow<Boolean> = MutableStateFlow(true)
-    override val errorsState: StateFlow<List<AuthorizationLoginComponent.Error>> =
-        MutableStateFlow(listOf(AuthorizationLoginComponent.Error.InvalidCredentials))
+    override val errorsState: StateFlow<List<com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error>> =
+        MutableStateFlow(listOf(com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error.InvalidCredentials))
 
     override fun onLoginClick() = Unit
     override fun onCreateNewAccountClick() = Unit

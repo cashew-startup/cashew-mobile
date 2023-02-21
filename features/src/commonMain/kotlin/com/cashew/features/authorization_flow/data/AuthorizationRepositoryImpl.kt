@@ -20,15 +20,12 @@ class AuthorizationRepositoryImpl(
 
     override suspend fun login(username: String, password: String) {
         val response: LoginResponseDTO = requestHandler.request {
-            val response = post("auth/login") {
+            post("auth/login") {
                 setBody(LoginRequestDTO(username, password))
             }
-            println(response.status.value)
-            println(response.bodyAsText())
-            response
         }
         val accessToken = response.token?.accessToken ?: return
-        val refreshToken = response.token.refreshToken ?: return
+        val refreshToken = response.token?.refreshToken ?: return
         accessTokenStorage.saveAccessToken(AccessToken(accessToken))
         refreshTokenStorage.saveRefreshToken(RefreshToken(refreshToken))
 
@@ -41,7 +38,7 @@ class AuthorizationRepositoryImpl(
             }
         }
         val accessToken = response.token?.accessToken ?: return
-        val refreshToken = response.token.refreshToken ?: return
+        val refreshToken = response.token?.refreshToken ?: return
         accessTokenStorage.saveAccessToken(AccessToken(accessToken))
         refreshTokenStorage.saveRefreshToken(RefreshToken(refreshToken))
     }

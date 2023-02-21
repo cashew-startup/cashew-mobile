@@ -23,7 +23,7 @@ import com.cashew.features.welcome.ui.WelcomeComponent
 
 @Composable
 fun WelcomeUi(
-    component: WelcomeComponent,
+    component: com.cashew.features.welcome.ui.WelcomeComponent,
     modifier: Modifier = Modifier
 ) {
     Scaffold(modifier = modifier) {
@@ -78,7 +78,7 @@ fun WelcomeUiPreview() {
     }
 }
 
-class FakeWelcomeComponent : WelcomeComponent {
+class FakeWelcomeComponent : com.cashew.features.welcome.ui.WelcomeComponent {
 
     override fun onGetStartedClick() = Unit
 }

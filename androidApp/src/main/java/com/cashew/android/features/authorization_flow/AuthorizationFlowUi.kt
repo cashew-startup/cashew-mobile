@@ -11,7 +11,7 @@ import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 
 @Composable
 fun AuthorizationFlowUi(
-    component: AuthorizationFlowComponent,
+    component: com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent,
     modifier: Modifier = Modifier
 ) {
 
@@ -19,8 +19,8 @@ fun AuthorizationFlowUi(
 
     Children(stack = childStack, modifier = modifier) { child ->
         when (val instance = child.instance) {
-            is AuthorizationFlowComponent.Child.Login -> AuthorizationLoginUi(instance.component)
-            is AuthorizationFlowComponent.Child.Register -> AuthorizationRegisterUi(instance.component)
+            is com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent.Child.Login -> AuthorizationLoginUi(instance.component)
+            is com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent.Child.Register -> AuthorizationRegisterUi(instance.component)
         }
     }
 }
