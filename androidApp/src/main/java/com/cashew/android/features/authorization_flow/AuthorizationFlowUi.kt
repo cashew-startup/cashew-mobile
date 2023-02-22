@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.cashew.android.features.authorization_flow.login.AuthorizationLoginUi
 import com.cashew.android.features.authorization_flow.register.AuthorizationRegisterUi
-import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 
 @Composable
 fun AuthorizationFlowUi(

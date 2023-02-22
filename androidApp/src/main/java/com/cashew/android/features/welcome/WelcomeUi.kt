@@ -19,7 +19,6 @@ import com.cashew.android.R
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.PrimaryButton
-import com.cashew.features.welcome.ui.WelcomeComponent
 
 @Composable
 fun WelcomeUi(

@@ -1,6 +1,7 @@
 package com.cashew.core.network
 
 import com.cashew.core.network.authorization.TokenRefresher
+import com.cashew.core.network.exceptions.ExceptionMapper
 import com.cashew.core.storage.providers.AccessTokenProvider
 import com.cashew.core.storage.providers.RefreshTokenProvider
 import io.ktor.client.*
@@ -18,7 +19,8 @@ class HttpClientProvider(
     private val backendUrl: String,
     private val accessTokenProvider: AccessTokenProvider,
     private val refreshTokenProvider: RefreshTokenProvider,
-    private val tokenRefresher: TokenRefresher
+    private val tokenRefresher: TokenRefresher,
+    private val exceptionMapper: ExceptionMapper
 ) {
     val authorizedHttpClient = createHttpClient(isAuthorized = true)
     val unauthorizedHttpClient = createHttpClient(isAuthorized = false)
@@ -66,6 +68,12 @@ class HttpClientProvider(
                 }
             }
             expectSuccess = true
+            install(HttpCallValidator) {
+                handleResponseExceptionWithRequest { cause, request ->
+                    if (cause is Exception) throw exceptionMapper.mapException(cause)
+                    else throw cause
+                }
+            }
         }
     }
 }

@@ -5,6 +5,6 @@ import com.cashew.features.authorization_flow.authorizationModule
 
 val modules = listOf(
     coreModule,
-    com.cashew.features.authorization_flow.authorizationModule,
+    authorizationModule,
 
 )

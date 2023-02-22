@@ -2,6 +2,7 @@ package com.cashew.features.authorization_flow
 
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.ComponentFactory
+import com.cashew.core.network.HttpClientProvider
 import com.cashew.core.storage.providers.AccessTokenProvider
 import com.cashew.core.storage.providers.CredentialsProvider
 import com.cashew.core.storage.providers.RefreshTokenProvider
@@ -24,7 +25,11 @@ import org.koin.dsl.module
 
 val authorizationModule = module {
     single<AuthorizationRepository> {
-        AuthorizationRepositoryImpl(get(), get(), get())
+        AuthorizationRepositoryImpl(
+            get<HttpClientProvider>().unauthorizedHttpClient,
+            get(),
+            get()
+        )
     }
 
     single {
