@@ -18,7 +18,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.cashew.android.R
+import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.CashewTheme
+import com.cashew.core.MR
 
 @Composable
 fun CashewTextField(
@@ -171,7 +173,7 @@ fun SearchTextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     PrimaryTextField(
-        hint = stringResource(id = R.string.search),
+        hint = MR.strings.search.resolve(),
         onTextChange = onTextChange,
         modifier = modifier,
         isEnabled = isEnabled,

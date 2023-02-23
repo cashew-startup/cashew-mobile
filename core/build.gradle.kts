@@ -1,3 +1,5 @@
+import dev.icerock.gradle.MRVisibility
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -76,5 +78,5 @@ android {
 
 multiplatformResources {
     multiplatformResourcesPackage = "com.cashew.core" // required
-    multiplatformResourcesVisibility = dev.icerock.gradle.MRVisibility.Internal // optional, default Public
+    multiplatformResourcesVisibility = MRVisibility.Public // optional, default Public
 }

@@ -86,5 +86,5 @@ android {
 
 multiplatformResources {
     multiplatformResourcesPackage = "com.cashew.features" // required
-    multiplatformResourcesVisibility = MRVisibility.Internal // optional, default Public
+    multiplatformResourcesVisibility = MRVisibility.Public // optional, default Public
 }

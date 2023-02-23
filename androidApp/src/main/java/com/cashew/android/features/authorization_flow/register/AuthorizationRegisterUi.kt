@@ -18,9 +18,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cashew.android.R
+import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
+import com.cashew.features.MR
 import com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -59,7 +61,7 @@ fun AuthorizationRegisterUi(
                 .padding(horizontal = 58.dp),
         ) {
             Title(
-                text = stringResource(id = R.string.register_title),
+                text = MR.strings.register_title.resolve(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -67,7 +69,7 @@ fun AuthorizationRegisterUi(
                     )
             )
             PrimaryTextField(
-                hint = stringResource(id = R.string.register_username),
+                hint = MR.strings.register_username.resolve(),
                 onTextChange = component::onUsernameTextChanged,
                 isError = isUsernameError,
                 modifier = Modifier
@@ -82,7 +84,7 @@ fun AuthorizationRegisterUi(
             )
 
             PrimaryTextField(
-                hint = stringResource(id = R.string.register_password),
+                hint = MR.strings.register_password.resolve(),
                 onTextChange = component::onPasswordTextChanged,
                 isError = isPasswordError,
                 modifier = Modifier
@@ -98,7 +100,7 @@ fun AuthorizationRegisterUi(
             )
 
             PrimaryTextField(
-                hint = stringResource(id = R.string.register_confirm_password),
+                hint = MR.strings.register_confirm_password.resolve(),
                 onTextChange = component::onConfirmPasswordChanged,
                 isError = isConfirmPasswordError,
                 modifier = Modifier
@@ -121,7 +123,7 @@ fun AuthorizationRegisterUi(
                 LazyColumn {
                     items(errors) { error ->
                         Error(
-                            text = stringResource(id = getTextFromError(error)),
+                            text = error.text?.resolve() ?: "",
                             modifier = Modifier.padding(
                                 start = 10.dp,
                                 top = 13.dp,
@@ -133,23 +135,12 @@ fun AuthorizationRegisterUi(
             }
 
             PrimaryButton(
-                text = stringResource(id = R.string.register_button),
+                text = MR.strings.register_button.resolve(),
                 onClick = component::onCreateClick,
                 modifier = Modifier.fillMaxWidth()
             )
         }
     }
-}
-
-@Composable
-fun getTextFromError(error: AuthorizationRegisterComponent.Error): Int {
-    return when (error) {
-        AuthorizationRegisterComponent.Error.ShortUsername -> R.string.register_error_short_username
-        AuthorizationRegisterComponent.Error.ShortPassword -> R.string.register_error_short_password
-        AuthorizationRegisterComponent.Error.PasswordsNotMatch -> R.string.register_error_passwords_not_match
-        AuthorizationRegisterComponent.Error.UserAlreadyExists -> R.string.register_error_user_already_exists
-    }
-
 }
 
 @Preview
@@ -160,8 +151,8 @@ fun AuthorizationRegisterUiPreview() {
     }
 }
 
-class FakeAuthorizationRegisterComponent :
-    AuthorizationRegisterComponent {
+class FakeAuthorizationRegisterComponent : AuthorizationRegisterComponent {
+
     override val usernameState: StateFlow<String> = MutableStateFlow("")
     override val passwordState: StateFlow<String> = MutableStateFlow("")
     override val confirmPasswordState: StateFlow<String> = MutableStateFlow("")

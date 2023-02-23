@@ -16,9 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cashew.android.R
+import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.PrimaryButton
+import com.cashew.features.MR
 import com.cashew.features.welcome.ui.WelcomeComponent
 
 @Composable
@@ -43,13 +45,13 @@ fun WelcomeUi(
             Column(modifier = Modifier.matchParentSize()) {
                 Spacer(modifier = Modifier.height(82.dp))
                 Text(
-                    text = stringResource(id = R.string.welcome_phrase_1),
+                    text = MR.strings.welcome_phrase_1.resolve(),
                     style = TextStyle(fontSize = 40.sp),
                     color = CashewTheme.colors.text.contrast,
                     modifier = Modifier.padding(horizontal = 30.dp)
                 )
                 Text(
-                    text = stringResource(id = R.string.welcome_phrase_2),
+                    text = MR.strings.welcome_phrase_2.resolve(),
                     style = TextStyle(
                         fontSize = 64.sp,
                         fontWeight = FontWeight.Bold
@@ -59,7 +61,7 @@ fun WelcomeUi(
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 PrimaryButton(
-                    text = stringResource(id = R.string.welcome_get_started),
+                    text = MR.strings.welcome_get_started.resolve(),
                     onClick = component::onGetStartedClick,
                     modifier = Modifier
                         .align(CenterHorizontally)
