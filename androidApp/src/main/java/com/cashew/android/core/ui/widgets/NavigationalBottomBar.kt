@@ -6,9 +6,9 @@ import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import com.cashew.android.R
+import com.cashew.android.core.painter
 import com.cashew.android.core.theme.CashewTheme
+import com.cashew.features.MR
 
 @Composable
 fun NavigationalBottomBar() {
@@ -16,7 +16,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.stats),
+                    painter = MR.assets.IcStats36.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary
@@ -28,7 +28,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.list),
+                    painter = MR.assets.IcList36.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary
@@ -40,7 +40,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.qr),
+                    painter = MR.assets.IcQR36.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = Color.Unspecified
@@ -52,7 +52,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.group),
+                    painter = MR.assets.IcGroup36.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary
@@ -64,7 +64,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = painterResource(id = R.drawable.profile),
+                    painter = MR.assets.IcProfile36.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary

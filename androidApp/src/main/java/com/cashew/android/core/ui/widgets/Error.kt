@@ -7,13 +7,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.cashew.android.R
+import com.cashew.android.core.painter
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
+import com.cashew.features.MR
 
 @Composable
 fun Error(
@@ -25,7 +25,7 @@ fun Error(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.ic_24_error),
+            painter = MR.assets.IcError24.painter(),
             contentDescription = null,
             tint = CashewTheme.colors.icons.error,
             modifier = Modifier.padding(

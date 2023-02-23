@@ -48,4 +48,6 @@ dependencies {
     implementation(libs.bundles.compose)
     implementation(libs.moko.resources.core)
     implementation(libs.moko.resources.compose)
+    implementation(libs.coil.core)
+    implementation(libs.coil.compose)
 }

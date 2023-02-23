@@ -9,13 +9,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.cashew.android.R
+import com.cashew.android.core.painter
 import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
@@ -35,7 +35,7 @@ fun WelcomeUi(
                 .fillMaxSize()
         ) {
             Image(
-                painter = painterResource(id = R.drawable.background_welcome_screen),
+                painter = MR.assets.BackgroundWelcomeScreen.painter(),
                 contentDescription = null,
                 modifier = Modifier
                     .padding(top = 24.dp)
