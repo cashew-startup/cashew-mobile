@@ -1,7 +1,6 @@
 package com.cashew.features.authorization_flow.ui.register
 
 import com.cashew.features.MR
-import dev.icerock.moko.resources.StringResource
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
 import kotlinx.coroutines.flow.StateFlow

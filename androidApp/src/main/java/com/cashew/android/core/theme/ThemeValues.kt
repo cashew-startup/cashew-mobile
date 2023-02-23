@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.cashew.android.R
+import com.cashew.core.MR
 
 val LightAppColors = Colors(
     isLight = true,
@@ -44,16 +44,16 @@ val LightAppColors = Colors(
 val DarkAppColors = LightAppColors // not yet implemented
 
 val openSansFamily = FontFamily(
-    Font(R.font.open_sans_bold, weight = FontWeight.Bold),
-    Font(R.font.open_sans_regular, weight = FontWeight.Normal),
-    Font(R.font.open_sans_light, weight = FontWeight.Light),
-    Font(R.font.open_sans_medium, weight = FontWeight.Medium),
-    Font(R.font.open_sans_extra_bold, weight = FontWeight.ExtraBold),
-    Font(R.font.open_sans_bold_italic, weight = FontWeight.Bold, style = FontStyle.Italic),
-    Font(R.font.open_sans_medium_italic, weight = FontWeight.Medium, style = FontStyle.Italic),
-    Font(R.font.open_sans_light_italic, weight = FontWeight.Light, style = FontStyle.Italic),
-    Font(R.font.open_sans_italic, weight = FontWeight.Normal, style = FontStyle.Italic),
-    Font(R.font.open_sans_extra_bold_italic, weight = FontWeight.ExtraBold, style = FontStyle.Italic)
+    Font(MR.fonts.OpenSans.bold.fontResourceId, weight = FontWeight.Bold),
+    Font(MR.fonts.OpenSans.regular.fontResourceId, weight = FontWeight.Normal),
+    Font(MR.fonts.OpenSans.light.fontResourceId, weight = FontWeight.Light),
+    Font(MR.fonts.OpenSans.medium.fontResourceId, weight = FontWeight.Medium),
+    Font(MR.fonts.OpenSans.extraBold.fontResourceId, weight = FontWeight.ExtraBold),
+    Font(MR.fonts.OpenSans.boldItalic.fontResourceId, weight = FontWeight.Bold, style = FontStyle.Italic),
+    Font(MR.fonts.OpenSans.mediumItalic.fontResourceId, weight = FontWeight.Medium, style = FontStyle.Italic),
+    Font(MR.fonts.OpenSans.lightItalic.fontResourceId, weight = FontWeight.Light, style = FontStyle.Italic),
+    Font(MR.fonts.OpenSans.italic.fontResourceId, weight = FontWeight.Normal, style = FontStyle.Italic),
+    Font(MR.fonts.OpenSans.extraBoldItalic.fontResourceId, weight = FontWeight.ExtraBold, style = FontStyle.Italic)
 )
 
 val AppTypography = Typography(
