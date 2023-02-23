@@ -46,4 +46,6 @@ dependencies {
     implementation(project(":features"))
 
     implementation(libs.bundles.compose)
+    implementation(libs.moko.resources.core)
+    implementation(libs.moko.resources.compose)
 }

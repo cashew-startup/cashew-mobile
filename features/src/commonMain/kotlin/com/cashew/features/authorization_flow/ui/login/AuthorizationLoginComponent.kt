@@ -1,5 +1,7 @@
 package com.cashew.features.authorization_flow.ui.login
 
+import com.cashew.features.MR
+import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.flow.StateFlow
 
 interface AuthorizationLoginComponent {
@@ -18,8 +20,8 @@ interface AuthorizationLoginComponent {
     fun onUsernameTextChanged(changedUsername: String)
     fun onPasswordTextChanged(changedPassword: String)
 
-    enum class Error {
-        InvalidCredentials
+    sealed class Error(val text: StringResource?) {
+        object InvalidCredentials : Error(MR.strings.login_error_invalid_credentials)
     }
 
     sealed interface Output {

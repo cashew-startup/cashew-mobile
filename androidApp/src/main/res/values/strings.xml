@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="search">Search</string>
-    <string name="welcome_phrase_1">Welcome to</string>
-    <string name="welcome_phrase_2">Cashew</string>
-    <string name="welcome_get_started">Get started</string>
-    <string name="login_title">Log in</string>
-    <string name="login_username">Username</string>
-    <string name="login_password">Password</string>
-    <string name="login_button">Log in</string>
-    <string name="login_text_button">Create new account</string>
-    <string name="login_error_invalid_credentials">Invalid username or password.\nPlease, try again</string>
-    <string name="register_title">Create Account</string>
-    <string name="register_username">Username</string>
-    <string name="register_password">Password</string>
-    <string name="register_error_short_username">Username is too short/long</string>
-    <string name="register_error_short_password">Password is too short/long</string>
-    <string name="register_error_passwords_not_match">Passwords don\'t match</string>
-    <string name="register_confirm_password">Confirm password</string>
-    <string name="register_button">Create</string>
-    <string name="register_error_user_already_exists">User already exists</string>
+
 </resources>

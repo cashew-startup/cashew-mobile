@@ -1,8 +1,11 @@
+import dev.icerock.gradle.MRVisibility
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     kotlin("plugin.serialization") version "1.8.10"
     id("kotlin-parcelize")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -33,11 +36,13 @@ kotlin {
                 implementation(libs.koin.core)
                 implementation(libs.bundles.replica)
                 implementation(libs.multiplatform.settings)
+                implementation(libs.moko.resources.core)
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.moko.resources.test)
             }
         }
         val androidMain by getting {
@@ -45,6 +50,7 @@ kotlin {
                 implementation(project(":core"))
                 implementation(libs.android.security)
                 implementation(libs.ktor.client.okhttp)
+                implementation(libs.moko.resources.compose)
             }
         }
         val androidTest by getting
@@ -76,4 +82,9 @@ android {
         minSdk = 26
         targetSdk = 33
     }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.cashew.features" // required
+    multiplatformResourcesVisibility = MRVisibility.Public // optional, default Public
 }

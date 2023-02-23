@@ -21,15 +21,19 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cashew.android.R
+import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
+import com.cashew.features.MR
+import com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent
+import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun AuthorizationLoginUi(
-    component: com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent,
+    component: AuthorizationLoginComponent,
     modifier: Modifier = Modifier
 ) {
 
@@ -52,14 +56,14 @@ fun AuthorizationLoginUi(
                 .padding(horizontal = 58.dp),
         ) {
             Title(
-                text = stringResource(id = R.string.login_title),
+                text = MR.strings.login_title.resolve(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 30.dp)
             )
             PrimaryTextField(
                 text = usernameText,
-                hint = stringResource(id = R.string.login_username),
+                hint = MR.strings.login_username.resolve(),
                 onTextChange = component::onUsernameTextChanged,
                 isError = isUsernameError,
                 modifier = Modifier
@@ -74,7 +78,7 @@ fun AuthorizationLoginUi(
             )
             PrimaryTextField(
                 text = passwordText,
-                hint = stringResource(id = R.string.login_password),
+                hint = MR.strings.login_password.resolve(),
                 onTextChange = component::onPasswordTextChanged,
                 isError = isPasswordError,
                 visualTransformation = PasswordVisualTransformation(),
@@ -95,7 +99,7 @@ fun AuthorizationLoginUi(
                 LazyColumn {
                     items(errors) { error ->
                         Error(
-                            text = stringResource(id = getTextFromError(error)),
+                            text = error.text?.resolve() ?: "",
                             modifier = Modifier.padding(
                                 start = 10.dp,
                                 top = 13.dp,
@@ -107,7 +111,7 @@ fun AuthorizationLoginUi(
             }
 
             PrimaryButton(
-                text = stringResource(id = R.string.login_button),
+                text = MR.strings.login_button.resolve(),
                 onClick = component::onLoginClick,
                 modifier = Modifier.fillMaxWidth()
             )
@@ -118,7 +122,7 @@ fun AuthorizationLoginUi(
                     .align(CenterHorizontally)
             ) {
                 Text(
-                    text = stringResource(id = R.string.login_text_button),
+                    text = MR.strings.login_text_button.resolve(),
                     style = CashewTheme.typography.text.regular.merge(
                         TextStyle(
                             textDecoration = TextDecoration.Underline,
@@ -131,13 +135,6 @@ fun AuthorizationLoginUi(
     }
 }
 
-@Composable
-fun getTextFromError(error: com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error): Int {
-    return when (error) {
-        com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error.InvalidCredentials -> R.string.login_error_invalid_credentials
-    }
-}
-
 @Preview
 @Composable
 fun AuthorizationLoginUiPreview() {
@@ -147,14 +144,14 @@ fun AuthorizationLoginUiPreview() {
 }
 
 class FakeAuthorizationLoginComponent :
-    com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent {
+    AuthorizationLoginComponent {
 
     override val usernameState: StateFlow<String> = MutableStateFlow("Username")
     override val passwordState: StateFlow<String> = MutableStateFlow("Password")
     override val isUsernameErrorState: StateFlow<Boolean> = MutableStateFlow(false)
     override val isPasswordErrorState: StateFlow<Boolean> = MutableStateFlow(true)
-    override val errorsState: StateFlow<List<com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error>> =
-        MutableStateFlow(listOf(com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent.Error.InvalidCredentials))
+    override val errorsState: StateFlow<List<AuthorizationLoginComponent.Error>> =
+        MutableStateFlow(listOf(AuthorizationLoginComponent.Error.InvalidCredentials))
 
     override fun onLoginClick() = Unit
     override fun onCreateNewAccountClick() = Unit

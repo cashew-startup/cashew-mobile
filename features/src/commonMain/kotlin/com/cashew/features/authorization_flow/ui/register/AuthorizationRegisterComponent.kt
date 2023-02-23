@@ -1,5 +1,7 @@
 package com.cashew.features.authorization_flow.ui.register
 
+import com.cashew.features.MR
+import dev.icerock.moko.resources.StringResource
 import kotlinx.coroutines.flow.StateFlow
 
 interface AuthorizationRegisterComponent {
@@ -22,8 +24,11 @@ interface AuthorizationRegisterComponent {
     fun onPasswordTextChanged(changedPassword: String)
     fun onConfirmPasswordChanged(changedConfirmPassword: String)
 
-    enum class Error {
-        ShortUsername, ShortPassword, PasswordsNotMatch, UserAlreadyExists
+    sealed class Error(val text: StringResource?) {
+        object ShortUsername : Error(MR.strings.register_error_short_username)
+        object ShortPassword : Error(MR.strings.register_error_short_password)
+        object PasswordsNotMatch : Error(MR.strings.register_error_passwords_not_match)
+        object UserAlreadyExists : Error(MR.strings.register_error_user_already_exists)
     }
 
     sealed interface Output {
