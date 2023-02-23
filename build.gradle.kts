@@ -9,3 +9,9 @@ plugins {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
+
+buildscript {
+    dependencies {
+        classpath("dev.icerock.moko:resources-generator:0.20.1")
+    }
+}

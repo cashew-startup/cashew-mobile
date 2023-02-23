@@ -9,10 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.ui.widgets.NavigationalBottomBar
+import com.cashew.features.main.ui.MainComponent
 
 @Composable
 fun MainUi(
-    component: com.cashew.features.main.ui.MainComponent,
+    component: MainComponent,
     modifier:  Modifier = Modifier
 )
 {
@@ -37,6 +38,4 @@ fun MainUiPreview() {
     }
 }
 
-class FakeMainComponent: com.cashew.features.main.ui.MainComponent {
-
-}
+class FakeMainComponent: MainComponent

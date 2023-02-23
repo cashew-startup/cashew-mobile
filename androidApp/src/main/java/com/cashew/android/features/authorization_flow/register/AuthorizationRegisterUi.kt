@@ -21,12 +21,13 @@ import com.cashew.android.R
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
+import com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 @Composable
 fun AuthorizationRegisterUi(
-    component: com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent,
+    component: AuthorizationRegisterComponent,
     modifier: Modifier = Modifier
 ) {
     val isUsernameError by component.isUsernameErrorState.collectAsState()
@@ -141,12 +142,12 @@ fun AuthorizationRegisterUi(
 }
 
 @Composable
-fun getTextFromError(error: com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error): Int {
+fun getTextFromError(error: AuthorizationRegisterComponent.Error): Int {
     return when (error) {
-        com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error.ShortUsername -> R.string.register_error_short_username
-        com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error.ShortPassword -> R.string.register_error_short_password
-        com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error.PasswordsNotMatch -> R.string.register_error_passwords_not_match
-        com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error.UserAlreadyExists -> R.string.register_error_user_already_exists
+        AuthorizationRegisterComponent.Error.ShortUsername -> R.string.register_error_short_username
+        AuthorizationRegisterComponent.Error.ShortPassword -> R.string.register_error_short_password
+        AuthorizationRegisterComponent.Error.PasswordsNotMatch -> R.string.register_error_passwords_not_match
+        AuthorizationRegisterComponent.Error.UserAlreadyExists -> R.string.register_error_user_already_exists
     }
 
 }
@@ -160,15 +161,15 @@ fun AuthorizationRegisterUiPreview() {
 }
 
 class FakeAuthorizationRegisterComponent :
-    com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent {
+    AuthorizationRegisterComponent {
     override val usernameState: StateFlow<String> = MutableStateFlow("")
     override val passwordState: StateFlow<String> = MutableStateFlow("")
     override val confirmPasswordState: StateFlow<String> = MutableStateFlow("")
     override val isUsernameErrorState: StateFlow<Boolean> = MutableStateFlow(false)
     override val isPasswordErrorState: StateFlow<Boolean> = MutableStateFlow(true)
     override val isConfirmPasswordState: StateFlow<Boolean> = MutableStateFlow(true)
-    override val errorsState: StateFlow<List<com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error>> =
-        MutableStateFlow(listOf(com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent.Error.PasswordsNotMatch))
+    override val errorsState: StateFlow<List<AuthorizationRegisterComponent.Error>> =
+        MutableStateFlow(listOf(AuthorizationRegisterComponent.Error.PasswordsNotMatch))
 
     override fun onCreateClick() = Unit
     override fun onBackPressed() = Unit

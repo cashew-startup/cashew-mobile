@@ -14,6 +14,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
 
     versionCatalogs {
@@ -94,6 +95,12 @@ dependencyResolutionManagement {
 
             // Excrypted shared spref
             library("android-security", "androidx.security", "security-crypto").version("1.1.0-alpha04")
+
+            // String resources
+            version("moko", "0.20.1")
+            library("moko-resources-core", "dev.icerock.moko","resources").versionRef("moko")
+            library("moko-resources-compose", "dev.icerock.moko", "resources-compose").versionRef("moko")
+            library("moko-resources-test", "dev.icerock.moko", "resources-test").versionRef("moko")
         }
     }
 }

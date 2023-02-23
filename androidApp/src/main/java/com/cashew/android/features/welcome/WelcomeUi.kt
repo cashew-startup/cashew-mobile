@@ -19,10 +19,11 @@ import com.cashew.android.R
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.PrimaryButton
+import com.cashew.features.welcome.ui.WelcomeComponent
 
 @Composable
 fun WelcomeUi(
-    component: com.cashew.features.welcome.ui.WelcomeComponent,
+    component: WelcomeComponent,
     modifier: Modifier = Modifier
 ) {
     Scaffold(modifier = modifier) {
@@ -77,7 +78,7 @@ fun WelcomeUiPreview() {
     }
 }
 
-class FakeWelcomeComponent : com.cashew.features.welcome.ui.WelcomeComponent {
+class FakeWelcomeComponent : WelcomeComponent {
 
     override fun onGetStartedClick() = Unit
 }
