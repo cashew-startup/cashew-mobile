@@ -26,8 +26,8 @@ fun Error(
     ) {
         Icon(
             painter = MR.assets.IcError24.painter(),
-            contentDescription = null,
             tint = CashewTheme.colors.icons.error,
+            contentDescription = null,
             modifier = Modifier.padding(
                 end = 7.dp
             )

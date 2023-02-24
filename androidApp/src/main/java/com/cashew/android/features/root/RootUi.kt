@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
+import com.cashew.android.core.message.MessageUi
 import com.cashew.android.features.authorization_flow.AuthorizationFlowUi
 import com.cashew.android.features.welcome.WelcomeUi
 import com.cashew.features.root.ui.RootComponent
@@ -23,4 +24,6 @@ fun RootUi(
             is RootComponent.Child.AuthorizationFlow -> AuthorizationFlowUi(component = instance.component)
         }
     }
+
+    MessageUi(component = component.messageComponent)
 }

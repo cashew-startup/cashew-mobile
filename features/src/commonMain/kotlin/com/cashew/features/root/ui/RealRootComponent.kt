@@ -1,6 +1,7 @@
 package com.cashew.features.root.ui
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
@@ -8,6 +9,8 @@ import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
+import com.cashew.core.createMessageComponent
+import com.cashew.core.message.ui.MessageComponent
 import com.cashew.core.utils.toStateFlow
 import com.cashew.features.authorization_flow.createAuthorizationFlowComponent
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
@@ -28,6 +31,10 @@ class RealRootComponent(
         handleBackButton = true,
         childFactory = ::createChild
     ).toStateFlow(lifecycle)
+
+    override val messageComponent: MessageComponent = componentFactory.createMessageComponent(
+        childContext(key = "message")
+    )
 
     private fun createChild(
         childConfig: ChildConfig,

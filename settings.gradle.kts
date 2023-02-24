@@ -105,6 +105,7 @@ dependencyResolutionManagement {
             // Image loader
             version("coil", "2.2.2")
             library("coil-core", "io.coil-kt", "coil").versionRef("coil")
+            library("coil-svg", "io.coil-kt", "coil-svg").versionRef("coil")
             library("coil-compose", "io.coil-kt", "coil-compose").versionRef("coil")
         }
     }
