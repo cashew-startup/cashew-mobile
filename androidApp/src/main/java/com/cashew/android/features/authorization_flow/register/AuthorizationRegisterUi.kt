@@ -30,6 +30,9 @@ fun AuthorizationRegisterUi(
     component: AuthorizationRegisterComponent,
     modifier: Modifier = Modifier
 ) {
+    val username by component.usernameState.collectAsState()
+    val password by component.passwordState.collectAsState()
+    val confirmPassword by component.confirmPasswordState.collectAsState()
     val isUsernameError by component.isUsernameErrorState.collectAsState()
     val isPasswordError by component.isPasswordErrorState.collectAsState()
     val isConfirmPasswordError by component.isConfirmPasswordState.collectAsState()
@@ -67,6 +70,7 @@ fun AuthorizationRegisterUi(
                     )
             )
             PrimaryTextField(
+                text = username,
                 hint = MR.strings.register_username.resolve(),
                 onTextChange = component::onUsernameTextChanged,
                 isError = isUsernameError,
@@ -82,6 +86,7 @@ fun AuthorizationRegisterUi(
             )
 
             PrimaryTextField(
+                text = password,
                 hint = MR.strings.register_password.resolve(),
                 onTextChange = component::onPasswordTextChanged,
                 isError = isPasswordError,
@@ -98,6 +103,7 @@ fun AuthorizationRegisterUi(
             )
 
             PrimaryTextField(
+                text = confirmPassword,
                 hint = MR.strings.register_confirm_password.resolve(),
                 onTextChange = component::onConfirmPasswordChanged,
                 isError = isConfirmPasswordError,

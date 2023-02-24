@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
+    <string name="exception_client_request">Something wrong with this app\'s request on the server. Developers are already fixing the issue</string>
+    <string name="exception_no_internet">Couldn\'t connect to the network</string>
+    <string name="exception_no_response">Server didn\'t send any response, please, try again later</string>
+    <string name="exception_serialization">Server sent invalid data, try again later</string>
+    <string name="exception_server_response">Couldn\'t connect to the server</string>
+    <string name="exception_unauthorized">Unauthorized</string>
+    <string name="exception_unknown">Something is wrong. Developers are already fixing the issue. Please, try again later</string>
     <string name="search">Search</string>
 </resources>
