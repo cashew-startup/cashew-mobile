@@ -1,13 +1,22 @@
 package com.cashew.core.network.exceptions
 
+import com.cashew.core.network.dto.StatusResponseDTO
 import io.ktor.client.network.sockets.*
 import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.utils.io.errors.*
-
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.SerializationException as KotlinXSerializationException
 
 class ExceptionMapper {
+
+    fun mapStatusDtoToException(statusJson: String): AppException? {
+        val jsonObject = Json.parseToJsonElement(statusJson) as? JsonObject ?: return null
+        val status = Json.decodeFromJsonElement<StatusResponseDTO>(jsonObject["status"] ?: return null)
+        return null
+    }
 
     fun mapResponseException(exception: ResponseException): AppException {
         return when (val code = exception.response.status.value) {

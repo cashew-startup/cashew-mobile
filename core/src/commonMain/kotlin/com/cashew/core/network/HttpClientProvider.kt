@@ -10,6 +10,7 @@ import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -28,15 +29,15 @@ class HttpClientProvider(
     @OptIn(ExperimentalSerializationApi::class)
     private fun createHttpClient(isAuthorized: Boolean): HttpClient {
         return HttpClient {
-            install(ContentNegotiation) { json(
-                Json {
+            install(ContentNegotiation) {
+                json(Json {
                     ignoreUnknownKeys = true
                     isLenient = true
                     explicitNulls = false
                     encodeDefaults = true
                     prettyPrint = true
-                }
-            ) }
+                })
+            }
             install(Logging) { level = LogLevel.ALL }
             install(DefaultRequest) {
                 url {
@@ -70,8 +71,16 @@ class HttpClientProvider(
             expectSuccess = true
             install(HttpCallValidator) {
                 handleResponseExceptionWithRequest { cause, request ->
-                    if (cause is Exception) throw exceptionMapper.mapException(cause)
-                    else throw cause
+                    when (cause) {
+                        is ResponseException -> {
+                            val exception = exceptionMapper
+                                .mapStatusDtoToException(cause.response.bodyAsText())
+                                ?: exceptionMapper.mapResponseException(cause)
+                            throw exception
+                        }
+                        is Exception -> throw exceptionMapper.mapException(cause)
+                        else -> throw cause
+                    }
                 }
             }
         }
