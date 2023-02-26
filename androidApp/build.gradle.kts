@@ -51,4 +51,5 @@ dependencies {
     implementation(libs.coil.svg)
     implementation(libs.coil.core)
     implementation(libs.coil.compose)
+    implementation(libs.bundles.replica)
 }
