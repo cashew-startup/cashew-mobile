@@ -67,6 +67,8 @@ fun CashewTextField(
 
     val colors: TextFieldColors = TextFieldDefaults.outlinedTextFieldColors(
         backgroundColor = currentBackgroundColor,
+        cursorColor = currentTextColor,
+        errorCursorColor = currentTextColor,
         textColor = currentTextColor,
         leadingIconColor = contentColor,
         trailingIconColor = contentColor,
