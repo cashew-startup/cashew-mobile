@@ -32,11 +32,9 @@ class RealAuthorizationRegisterComponent(
         if (!validateCredentials()) return
         coroutineScope.safeLaunch(
             exceptionHandler,
-            onExceptionHandled = {
-                if (it !is ClientRequestException) return@safeLaunch
-                if (it.code == HTTP_CONFLICT_CODE) {
-                    errorsState.value = listOf(AuthorizationRegisterComponent.Error.UserAlreadyExists)
-                }
+            interceptor = {
+                if (it !is ClientRequestException || it.code != HTTP_CONFLICT_CODE) throw it
+                errorsState.value = listOf(AuthorizationRegisterComponent.Error.UserAlreadyExists)
             }
         ) {
             authorizationRepository.register(

@@ -28,8 +28,8 @@ class RealAuthorizationLoginComponent(
     override fun onLoginClick() {
         coroutineScope.safeLaunch(
             exceptionHandler,
-            onExceptionHandled = {
-                if (it !is UnauthorizedException) return@safeLaunch
+            interceptor = {
+                if (it !is UnauthorizedException) throw it
                 errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)
             }
         ) {
