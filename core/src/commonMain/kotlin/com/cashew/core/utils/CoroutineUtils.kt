@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 
 fun CoroutineScope.safeLaunch(
     exceptionHandler: ExceptionHandler,
+    interceptor: (Exception) -> Unit = { throw it },
     onExceptionHandled: (Exception) -> Unit = {},
     block: suspend () -> Unit,
 ) = launch {
@@ -15,7 +16,11 @@ fun CoroutineScope.safeLaunch(
     } catch (e: CancellationException) {
         // do nothing
     } catch (e: Exception) {
-        exceptionHandler.handleException(e)
+        try {
+            interceptor(e)
+        } catch (e: Exception) {
+            exceptionHandler.handleException(e)
+        }
         onExceptionHandled(e)
     }
 }
