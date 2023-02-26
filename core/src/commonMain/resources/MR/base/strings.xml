@@ -8,4 +8,5 @@
     <string name="exception_unauthorized">Unauthorized</string>
     <string name="exception_unknown">Something is wrong. Developers are already fixing the issue. Please, try again later</string>
     <string name="search">Search</string>
+    <string name="retry">Retry</string>
 </resources>
