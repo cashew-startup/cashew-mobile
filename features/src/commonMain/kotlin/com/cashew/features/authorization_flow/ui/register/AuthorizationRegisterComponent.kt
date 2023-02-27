@@ -1,21 +1,21 @@
 package com.cashew.features.authorization_flow.ui.register
 
+import com.cashew.core.wrappers.CStateFlow
 import com.cashew.features.MR
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
-import kotlinx.coroutines.flow.StateFlow
 
 interface AuthorizationRegisterComponent {
 
-    val usernameState: StateFlow<String>
-    val passwordState: StateFlow<String>
-    val confirmPasswordState: StateFlow<String>
+    val usernameState: CStateFlow<String>
+    val passwordState: CStateFlow<String>
+    val confirmPasswordState: CStateFlow<String>
 
-    val isUsernameErrorState: StateFlow<Boolean>
-    val isPasswordErrorState: StateFlow<Boolean>
-    val isConfirmPasswordState: StateFlow<Boolean>
+    val isUsernameErrorState: CStateFlow<Boolean>
+    val isPasswordErrorState: CStateFlow<Boolean>
+    val isConfirmPasswordState: CStateFlow<Boolean>
 
-    val errorsState: StateFlow<List<Error>>
+    val errorsState: CStateFlow<List<Error>>
 
     fun onCreateClick()
 

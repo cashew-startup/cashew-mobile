@@ -23,6 +23,8 @@ import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
+import com.cashew.core.wrappers.CMutableStateFlow
+import com.cashew.core.wrappers.CStateFlow
 import com.cashew.features.MR
 import com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -143,12 +145,12 @@ fun AuthorizationLoginUiPreview() {
 class FakeAuthorizationLoginComponent :
     AuthorizationLoginComponent {
 
-    override val usernameState: StateFlow<String> = MutableStateFlow("Username")
-    override val passwordState: StateFlow<String> = MutableStateFlow("Password")
-    override val isUsernameErrorState: StateFlow<Boolean> = MutableStateFlow(false)
-    override val isPasswordErrorState: StateFlow<Boolean> = MutableStateFlow(true)
-    override val errorsState: StateFlow<List<AuthorizationLoginComponent.Error>> =
-        MutableStateFlow(listOf(AuthorizationLoginComponent.Error.InvalidCredentials))
+    override val usernameState: CStateFlow<String> = CMutableStateFlow("Username")
+    override val passwordState: CStateFlow<String> = CMutableStateFlow("Password")
+    override val isUsernameErrorState: CStateFlow<Boolean> = CMutableStateFlow(false)
+    override val isPasswordErrorState: CStateFlow<Boolean> = CMutableStateFlow(true)
+    override val errorsState: CStateFlow<List<AuthorizationLoginComponent.Error>> =
+        CMutableStateFlow(listOf(AuthorizationLoginComponent.Error.InvalidCredentials))
 
     override fun onLoginClick() = Unit
     override fun onCreateNewAccountClick() = Unit

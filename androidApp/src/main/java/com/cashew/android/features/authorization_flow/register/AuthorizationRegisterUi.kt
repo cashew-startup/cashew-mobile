@@ -20,6 +20,8 @@ import com.cashew.android.core.resolve
 import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
+import com.cashew.core.wrappers.CMutableStateFlow
+import com.cashew.core.wrappers.CStateFlow
 import com.cashew.features.MR
 import com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -157,14 +159,14 @@ fun AuthorizationRegisterUiPreview() {
 
 class FakeAuthorizationRegisterComponent : AuthorizationRegisterComponent {
 
-    override val usernameState: StateFlow<String> = MutableStateFlow("")
-    override val passwordState: StateFlow<String> = MutableStateFlow("")
-    override val confirmPasswordState: StateFlow<String> = MutableStateFlow("")
-    override val isUsernameErrorState: StateFlow<Boolean> = MutableStateFlow(false)
-    override val isPasswordErrorState: StateFlow<Boolean> = MutableStateFlow(true)
-    override val isConfirmPasswordState: StateFlow<Boolean> = MutableStateFlow(true)
-    override val errorsState: StateFlow<List<AuthorizationRegisterComponent.Error>> =
-        MutableStateFlow(listOf(AuthorizationRegisterComponent.Error.PasswordsNotMatch))
+    override val usernameState: CStateFlow<String> = CMutableStateFlow("")
+    override val passwordState: CStateFlow<String> = CMutableStateFlow("")
+    override val confirmPasswordState: CStateFlow<String> = CMutableStateFlow("")
+    override val isUsernameErrorState: CStateFlow<Boolean> = CMutableStateFlow(false)
+    override val isPasswordErrorState: CStateFlow<Boolean> = CMutableStateFlow(true)
+    override val isConfirmPasswordState: CStateFlow<Boolean> = CMutableStateFlow(true)
+    override val errorsState: CStateFlow<List<AuthorizationRegisterComponent.Error>> =
+        CMutableStateFlow(listOf(AuthorizationRegisterComponent.Error.PasswordsNotMatch))
 
     override fun onCreateClick() = Unit
     override fun onBackPressed() = Unit

@@ -12,11 +12,12 @@ import com.cashew.core.ComponentFactory
 import com.cashew.core.createMessageComponent
 import com.cashew.core.message.ui.MessageComponent
 import com.cashew.core.utils.toStateFlow
+import com.cashew.core.wrappers.CStateFlow
+import com.cashew.core.wrappers.wrap
 import com.cashew.features.authorization_flow.createAuthorizationFlowComponent
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 import com.cashew.features.welcome.createWelcomeComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
-import kotlinx.coroutines.flow.StateFlow
 
 class RealRootComponent(
     componentContext: ComponentContext,
@@ -25,12 +26,12 @@ class RealRootComponent(
 
     private val navigation = StackNavigation<ChildConfig>()
 
-    override val childStackFlow: StateFlow<ChildStack<*, RootComponent.Child>> = childStack(
+    override val childStackFlow: CStateFlow<ChildStack<*, RootComponent.Child>> = childStack(
         source = navigation,
         initialConfiguration = ChildConfig.Welcome,
         handleBackButton = true,
         childFactory = ::createChild
-    ).toStateFlow(lifecycle)
+    ).toStateFlow(lifecycle).wrap()
 
     override val messageComponent: MessageComponent = componentFactory.createMessageComponent(
         childContext(key = "message")
