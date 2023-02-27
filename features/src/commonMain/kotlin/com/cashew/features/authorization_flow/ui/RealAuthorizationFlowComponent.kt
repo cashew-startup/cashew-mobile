@@ -6,6 +6,8 @@ import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
 import com.cashew.core.utils.toStateFlow
+import com.cashew.core.wrappers.CStateFlow
+import com.cashew.core.wrappers.wrap
 import com.cashew.features.authorization_flow.createAuthorizationLoginComponent
 import com.cashew.features.authorization_flow.createAuthorizationRegisterComponent
 import com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent
@@ -20,12 +22,12 @@ class RealAuthorizationFlowComponent(
 
     private val navigation = StackNavigation<ChildConfig>()
 
-    override val childStackFlow: StateFlow<ChildStack<*, AuthorizationFlowComponent.Child>> = childStack(
+    override val childStackFlow: CStateFlow<ChildStack<*, AuthorizationFlowComponent.Child>> = childStack(
         source = navigation,
         initialConfiguration = ChildConfig.Login,
         handleBackButton = true,
         childFactory = ::createChild
-    ).toStateFlow(lifecycle)
+    ).toStateFlow(lifecycle).wrap()
 
     private fun createChild(
         childConfig: ChildConfig,

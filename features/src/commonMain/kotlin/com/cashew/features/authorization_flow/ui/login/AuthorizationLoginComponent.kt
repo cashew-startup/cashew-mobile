@@ -1,5 +1,6 @@
 package com.cashew.features.authorization_flow.ui.login
 
+import com.cashew.core.wrappers.CStateFlow
 import com.cashew.features.MR
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
@@ -7,13 +8,13 @@ import kotlinx.coroutines.flow.StateFlow
 
 interface AuthorizationLoginComponent {
 
-    val usernameState: StateFlow<String>
-    val passwordState: StateFlow<String>
+    val usernameState: CStateFlow<String>
+    val passwordState: CStateFlow<String>
 
-    val isUsernameErrorState: StateFlow<Boolean>
-    val isPasswordErrorState: StateFlow<Boolean>
+    val isUsernameErrorState: CStateFlow<Boolean>
+    val isPasswordErrorState: CStateFlow<Boolean>
 
-    val errorsState: StateFlow<List<Error>>
+    val errorsState: CStateFlow<List<Error>>
 
     fun onLoginClick()
     fun onCreateNewAccountClick()

@@ -5,6 +5,7 @@ import com.cashew.core.network.exceptions.ClientRequestException
 import com.cashew.core.network.exceptions.ExceptionHandler
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.core.utils.safeLaunch
+import com.cashew.core.wrappers.CMutableStateFlow
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 
@@ -19,14 +20,14 @@ class RealAuthorizationRegisterComponent(
 
     private val coroutineScope = componentCoroutineScope()
 
-    override val usernameState: MutableStateFlow<String> = MutableStateFlow("")
-    override val passwordState: MutableStateFlow<String> = MutableStateFlow("")
-    override val confirmPasswordState: MutableStateFlow<String> = MutableStateFlow("")
-    override val isUsernameErrorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    override val isPasswordErrorState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    override val isConfirmPasswordState: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    override val errorsState: MutableStateFlow<List<AuthorizationRegisterComponent.Error>> =
-        MutableStateFlow(emptyList())
+    override val usernameState: CMutableStateFlow<String> = CMutableStateFlow("")
+    override val passwordState: CMutableStateFlow<String> = CMutableStateFlow("")
+    override val confirmPasswordState: CMutableStateFlow<String> = CMutableStateFlow("")
+    override val isUsernameErrorState: CMutableStateFlow<Boolean> = CMutableStateFlow(false)
+    override val isPasswordErrorState: CMutableStateFlow<Boolean> = CMutableStateFlow(false)
+    override val isConfirmPasswordState: CMutableStateFlow<Boolean> = CMutableStateFlow(false)
+    override val errorsState: CMutableStateFlow<List<AuthorizationRegisterComponent.Error>> =
+        CMutableStateFlow(emptyList())
 
     override fun onCreateClick() {
         if (!validateCredentials()) return
