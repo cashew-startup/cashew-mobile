@@ -5,7 +5,6 @@ import com.cashew.core.message.ui.MessageComponent
 import com.cashew.core.wrappers.CStateFlow
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
-import kotlinx.coroutines.flow.StateFlow
 
 interface RootComponent {
 

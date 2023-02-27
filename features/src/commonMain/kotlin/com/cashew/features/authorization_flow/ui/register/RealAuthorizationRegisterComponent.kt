@@ -7,7 +7,6 @@ import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.core.utils.safeLaunch
 import com.cashew.core.wrappers.CMutableStateFlow
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
-import kotlinx.coroutines.flow.MutableStateFlow
 
 private const val HTTP_CONFLICT_CODE = 409
 

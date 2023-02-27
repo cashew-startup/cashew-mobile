@@ -4,7 +4,6 @@ import com.cashew.core.wrappers.CStateFlow
 import com.cashew.features.MR
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
-import kotlinx.coroutines.flow.StateFlow
 
 interface AuthorizationRegisterComponent {
 

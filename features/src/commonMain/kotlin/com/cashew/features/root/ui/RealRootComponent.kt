@@ -18,7 +18,6 @@ import com.cashew.features.authorization_flow.createAuthorizationFlowComponent
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 import com.cashew.features.welcome.createWelcomeComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
-import kotlinx.coroutines.flow.StateFlow
 
 class RealRootComponent(
     componentContext: ComponentContext,

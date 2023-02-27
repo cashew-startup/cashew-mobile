@@ -12,7 +12,6 @@ import com.cashew.features.authorization_flow.createAuthorizationLoginComponent
 import com.cashew.features.authorization_flow.createAuthorizationRegisterComponent
 import com.cashew.features.authorization_flow.ui.login.AuthorizationLoginComponent
 import com.cashew.features.authorization_flow.ui.register.AuthorizationRegisterComponent
-import kotlinx.coroutines.flow.StateFlow
 
 class RealAuthorizationFlowComponent(
     componentContext: ComponentContext,
