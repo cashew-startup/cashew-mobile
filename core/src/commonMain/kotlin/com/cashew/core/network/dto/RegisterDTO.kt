@@ -12,6 +12,5 @@ class RegisterRequestDTO(
 @Serializable
 class RegisterResponseDTO(
     @SerialName("id") val id: String?,
-    @SerialName("token") val token: TokenResponseDTO?,
-    @SerialName("status") val status: StatusResponseDTO?
+    @SerialName("token") val token: TokenResponseDTO?
 )

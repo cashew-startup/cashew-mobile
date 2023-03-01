@@ -12,9 +12,7 @@ import kotlinx.serialization.SerializationException as KotlinXSerializationExcep
 
 class ExceptionMapper {
 
-    fun mapStatusDtoToException(statusJson: String): AppException? {
-        val jsonObject = Json.parseToJsonElement(statusJson) as? JsonObject ?: return null
-        val status = Json.decodeFromJsonElement<StatusResponseDTO>(jsonObject["status"] ?: return null)
+    fun mapStatusDtoToException(statusDto: StatusResponseDTO): AppException? {
         return null
     }
 
