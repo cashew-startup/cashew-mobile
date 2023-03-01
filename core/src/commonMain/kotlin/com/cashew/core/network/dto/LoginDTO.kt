@@ -11,6 +11,5 @@ class LoginRequestDTO(
 @Serializable
 class LoginResponseDTO(
     @SerialName("id") val id: String?,
-    @SerialName("token") val token: TokenResponseDTO?,
-    @SerialName("status") val status: StatusResponseDTO?
+    @SerialName("token") val token: TokenResponseDTO?
 )

@@ -5,6 +5,7 @@ import com.cashew.core.network.exceptions.ExceptionMapper
 import com.cashew.core.storage.providers.AccessTokenProvider
 import com.cashew.core.storage.providers.RefreshTokenProvider
 import io.ktor.client.*
+import io.ktor.client.call.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.auth.*
 import io.ktor.client.plugins.auth.providers.*
@@ -74,7 +75,7 @@ class HttpClientProvider(
                     when (cause) {
                         is ResponseException -> {
                             val exception = exceptionMapper
-                                .mapStatusDtoToException(cause.response.bodyAsText())
+                                .mapStatusDtoToException(cause.response.body())
                                 ?: exceptionMapper.mapResponseException(cause)
                             throw exception
                         }
