@@ -1,14 +1,11 @@
 package com.cashew.features.authorization_flow.ui.register
 
 import com.arkivanov.decompose.ComponentContext
-import com.cashew.core.network.exceptions.ClientRequestException
 import com.cashew.core.network.exceptions.ExceptionHandler
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.core.utils.safeLaunch
 import com.cashew.core.wrappers.CMutableStateFlow
 import com.cashew.features.authorization_flow.data.AuthorizationRepository
-
-private const val HTTP_CONFLICT_CODE = 409
 
 class RealAuthorizationRegisterComponent(
     componentContext: ComponentContext,
@@ -30,18 +27,19 @@ class RealAuthorizationRegisterComponent(
 
     override fun onCreateClick() {
         if (!validateCredentials()) return
-        coroutineScope.safeLaunch(
-            exceptionHandler,
-            interceptor = {
-                if (it !is ClientRequestException || it.code != HTTP_CONFLICT_CODE) throw it
-                errorsState.value = listOf(AuthorizationRegisterComponent.Error.UserAlreadyExists)
-            }
-        ) {
-            authorizationRepository.register(
+        coroutineScope.safeLaunch(exceptionHandler) {
+            val result = authorizationRepository.register(
                 username = usernameState.value,
                 password = passwordState.value
             )
-            onOutput(AuthorizationRegisterComponent.Output.OnAccountCreated)
+            when (result) {
+                AuthorizationRepository.RegisterResult.UserAlreadyExists -> {
+                    errorsState.value = listOf(AuthorizationRegisterComponent.Error.UserAlreadyExists)
+                }
+                AuthorizationRepository.RegisterResult.Ok -> {
+                    onOutput(AuthorizationRegisterComponent.Output.OnAccountCreated)
+                }
+            }
         }
     }
 
@@ -63,10 +61,10 @@ class RealAuthorizationRegisterComponent(
 
     private fun validateCredentials(): Boolean {
         val errors = mutableListOf<AuthorizationRegisterComponent.Error>()
-        if (usernameState.value.length !in USERNAME_MIN_CHAR_LIMIT..USERNAME_MAX_CHAR_LIMIT) {
+        if (usernameState.value.length !in USERNAME_LENGTH_MIN..USERNAME_LENGTH_MAX) {
             errors += AuthorizationRegisterComponent.Error.ShortUsername
         }
-        if (passwordState.value.length !in PASSWORD_MIN_CHAR_LIMIT..PASSWORD_MAX_CHAR_LIMIT) {
+        if (passwordState.value.length !in PASSWORD_LENGTH_MIN..PASSWORD_LENGTH_MAX) {
             errors += AuthorizationRegisterComponent.Error.ShortPassword
         }
         if (passwordState.value != confirmPasswordState.value) {
@@ -77,9 +75,9 @@ class RealAuthorizationRegisterComponent(
     }
 
     private companion object {
-        const val USERNAME_MIN_CHAR_LIMIT = 4
-        const val USERNAME_MAX_CHAR_LIMIT = 25
-        const val PASSWORD_MIN_CHAR_LIMIT = 8
-        const val PASSWORD_MAX_CHAR_LIMIT = 25
+        const val USERNAME_LENGTH_MIN = 4
+        const val USERNAME_LENGTH_MAX = 25
+        const val PASSWORD_LENGTH_MIN = 8
+        const val PASSWORD_LENGTH_MAX = 25
     }
 }

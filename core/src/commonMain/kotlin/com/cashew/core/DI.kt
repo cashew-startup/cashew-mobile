@@ -7,7 +7,7 @@ import com.cashew.core.message.data.MessageServiceImpl
 import com.cashew.core.message.ui.MessageComponent
 import com.cashew.core.message.ui.RealMessageComponent
 import com.cashew.core.network.HttpClientProvider
-import com.cashew.core.network.authorization.TokenRefresher
+import com.cashew.core.authorization.TokenRefresher
 import com.cashew.core.network.exceptions.ExceptionHandler
 import com.cashew.core.network.exceptions.ExceptionMapper
 import me.aartikov.replica.client.ReplicaClient

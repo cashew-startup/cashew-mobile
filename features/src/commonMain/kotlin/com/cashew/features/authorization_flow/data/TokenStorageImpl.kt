@@ -1,7 +1,7 @@
 package com.cashew.features.authorization_flow.data
 
-import com.cashew.core.network.authorization.AccessToken
-import com.cashew.core.network.authorization.RefreshToken
+import com.cashew.core.authorization.AccessToken
+import com.cashew.core.authorization.RefreshToken
 import com.cashew.core.storage.storages.AccessTokenStorage
 import com.cashew.core.storage.storages.RefreshTokenStorage
 import com.russhwolf.settings.Settings

@@ -26,18 +26,19 @@ class RealAuthorizationLoginComponent(
         CMutableStateFlow(emptyList())
 
     override fun onLoginClick() {
-        coroutineScope.safeLaunch(
-            exceptionHandler,
-            interceptor = {
-                if (it !is UnauthorizedException) throw it
-                errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)
-            }
-        ) {
-            authorizationRepository.login(
+        coroutineScope.safeLaunch(exceptionHandler) {
+            val result = authorizationRepository.login(
                 username = usernameState.value,
                 password = passwordState.value
             )
-            onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
+            when (result) {
+                AuthorizationRepository.LoginResult.InvalidCredentials -> {
+                    errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)
+                }
+                AuthorizationRepository.LoginResult.Ok -> {
+                    onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
+                }
+            }
         }
     }
 
