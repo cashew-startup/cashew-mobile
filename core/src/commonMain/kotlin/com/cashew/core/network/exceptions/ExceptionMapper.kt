@@ -5,9 +5,6 @@ import io.ktor.client.network.sockets.*
 import io.ktor.client.plugins.*
 import io.ktor.http.*
 import io.ktor.utils.io.errors.*
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonObject
-import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.SerializationException as KotlinXSerializationException
 
 class ExceptionMapper {

@@ -2,7 +2,6 @@ package com.cashew.features.authorization_flow.ui.login
 
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.network.exceptions.ExceptionHandler
-import com.cashew.core.network.exceptions.UnauthorizedException
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.core.utils.safeLaunch
 import com.cashew.core.wrappers.CMutableStateFlow

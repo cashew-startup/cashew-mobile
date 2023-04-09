@@ -10,7 +10,8 @@ import com.cashew.core.network.exceptions.ClientRequestException
 import com.cashew.core.network.exceptions.UnauthorizedException
 import com.cashew.core.storage.storages.AccessTokenStorage
 import com.cashew.core.storage.storages.RefreshTokenStorage
-import com.cashew.features.authorization_flow.data.AuthorizationRepository.*
+import com.cashew.features.authorization_flow.data.AuthorizationRepository.LoginResult
+import com.cashew.features.authorization_flow.data.AuthorizationRepository.RegisterResult
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
