@@ -6,7 +6,7 @@ import com.cashew.core.authorization.UserId
 import com.cashew.core.authorization.Username
 import com.cashew.core.storage.providers.CredentialsProvider
 
-interface CredentialsStorage: CredentialsProvider {
+interface CredentialsStorage : CredentialsProvider {
 
     suspend fun saveCredentials(credentials: Credentials)
 
