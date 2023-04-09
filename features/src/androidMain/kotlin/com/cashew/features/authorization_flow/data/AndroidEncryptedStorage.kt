@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences.PrefKeyEncryptionScheme
 import androidx.security.crypto.MasterKey
-import com.cashew.core.network.authorization.*
+import com.cashew.core.authorization.*
 import com.cashew.core.storage.storages.AccessTokenStorage
 import com.cashew.core.storage.storages.CredentialsStorage
 import com.cashew.core.storage.storages.RefreshTokenStorage

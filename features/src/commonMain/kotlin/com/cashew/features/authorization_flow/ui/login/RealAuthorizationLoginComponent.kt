@@ -2,7 +2,6 @@ package com.cashew.features.authorization_flow.ui.login
 
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.network.exceptions.ExceptionHandler
-import com.cashew.core.network.exceptions.UnauthorizedException
 import com.cashew.core.utils.componentCoroutineScope
 import com.cashew.core.utils.safeLaunch
 import com.cashew.core.wrappers.CMutableStateFlow
@@ -26,18 +25,19 @@ class RealAuthorizationLoginComponent(
         CMutableStateFlow(emptyList())
 
     override fun onLoginClick() {
-        coroutineScope.safeLaunch(
-            exceptionHandler,
-            interceptor = {
-                if (it !is UnauthorizedException) throw it
-                errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)
-            }
-        ) {
-            authorizationRepository.login(
+        coroutineScope.safeLaunch(exceptionHandler) {
+            val result = authorizationRepository.login(
                 username = usernameState.value,
                 password = passwordState.value
             )
-            onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
+            when (result) {
+                AuthorizationRepository.LoginResult.InvalidCredentials -> {
+                    errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)
+                }
+                AuthorizationRepository.LoginResult.Ok -> {
+                    onOutput(AuthorizationLoginComponent.Output.OnLoggedIn)
+                }
+            }
         }
     }
 

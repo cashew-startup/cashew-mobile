@@ -1,4 +1,4 @@
-package com.cashew.core.network.authorization
+package com.cashew.core.authorization
 
 import com.cashew.core.network.dto.LoginRequestDTO
 import com.cashew.core.network.dto.LoginResponseDTO

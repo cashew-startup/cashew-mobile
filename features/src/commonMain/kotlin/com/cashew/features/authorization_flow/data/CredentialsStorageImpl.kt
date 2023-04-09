@@ -1,9 +1,9 @@
 package com.cashew.features.authorization_flow.data
 
-import com.cashew.core.network.authorization.Credentials
-import com.cashew.core.network.authorization.Password
-import com.cashew.core.network.authorization.UserId
-import com.cashew.core.network.authorization.Username
+import com.cashew.core.authorization.Credentials
+import com.cashew.core.authorization.Password
+import com.cashew.core.authorization.UserId
+import com.cashew.core.authorization.Username
 import com.cashew.core.storage.storages.CredentialsStorage
 import com.russhwolf.settings.Settings
 

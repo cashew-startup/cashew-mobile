@@ -5,9 +5,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class TokenResponseDTO(
-    @SerialName("userId") val userId: String?,
-    @SerialName("accessToken") val accessToken: String?,
-    @SerialName("refreshToken") val refreshToken: String?
+    @SerialName("userId") val userId: String,
+    @SerialName("accessToken") val accessToken: String,
+    @SerialName("refreshToken") val refreshToken: String
 )
 
 @Serializable

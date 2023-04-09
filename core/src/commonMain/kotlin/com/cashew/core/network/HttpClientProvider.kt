@@ -1,6 +1,6 @@
 package com.cashew.core.network
 
-import com.cashew.core.network.authorization.TokenRefresher
+import com.cashew.core.authorization.TokenRefresher
 import com.cashew.core.network.exceptions.ExceptionMapper
 import com.cashew.core.storage.providers.AccessTokenProvider
 import com.cashew.core.storage.providers.RefreshTokenProvider
