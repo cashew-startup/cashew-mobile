@@ -18,7 +18,7 @@ fun Title(
         text = text,
         modifier = modifier,
         color = color,
-        style = CashewTheme.typography.title.bold,
+        style = CashewTheme.typography.title.semiBold,
         textAlign = TextAlign.Center,
         overflow = TextOverflow.Ellipsis
     )

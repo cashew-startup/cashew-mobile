@@ -28,14 +28,3 @@ fun MainUi(
         )
     }
 }
-
-
-@Preview
-@Composable
-fun MainUiPreview() {
-    AppTheme() {
-        MainUi(component = FakeMainComponent())
-    }
-}
-
-class FakeMainComponent: MainComponent

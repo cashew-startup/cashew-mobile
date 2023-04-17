@@ -25,7 +25,8 @@ val LightAppColors = Colors(
     text = TextColors(
         primary = Color(0xFF56008A),
         contrast = Color(0xFFFFFFFF),
-        error = Color(0xFF8A0000)
+        error = Color(0xFF8A0000),
+        delete = Color(0xFFFF2222)
     ),
     button = ButtonColors(
         primary = Color(0xFF00CF15),
@@ -37,7 +38,8 @@ val LightAppColors = Colors(
         primary = Color(0xFF56008A),
         secondary = Color(0xFFAA80C5),
         contrast = Color(0XFFFFFFFF),
-        error = Color(0xFF8A0000)
+        error = Color(0xFF8A0000),
+        delete = Color(0xFFFF2222)
     )
 )
 
@@ -69,11 +71,16 @@ val AppTypography = Typography(
             fontWeight = FontWeight.Normal,
             fontSize = 16.sp,
             fontFamily = openSansFamily
+        ),
+        bold = TextStyle(
+            fontWeight = FontWeight.Bold,
+            fontSize = 16.sp,
+            fontFamily = openSansFamily
         )
     ),
     title = TitleTypography(
-        bold = TextStyle(
-            fontWeight = FontWeight.Bold,
+        semiBold = TextStyle(
+            fontWeight = FontWeight.SemiBold,
             fontSize = 24.sp,
             fontFamily = openSansFamily
         )

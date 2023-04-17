@@ -54,96 +54,126 @@ fun AuthorizationRegisterUi(
             )
         }
     ) { paddingValues ->
-        Column(
-            verticalArrangement = Arrangement.Center,
+        AuthorizationRegisterContent(
+            username = username,
+            onUsernameTextChanged = component::onUsernameTextChanged,
+            isUsernameError = isUsernameError,
+            password = password,
+            onPasswordTextChanged = component::onPasswordTextChanged,
+            isPasswordError = isPasswordError,
+            confirmPassword = confirmPassword,
+            onConfirmPasswordChanged = component::onConfirmPasswordChanged,
+            isConfirmPasswordError = isConfirmPasswordError,
+            onCreateClick = component::onCreateClick,
+            errors = errors,
+            modifier = Modifier.padding(paddingValues)
+        )
+    }
+}
+
+@Composable
+fun AuthorizationRegisterContent(
+    username: String,
+    onUsernameTextChanged: (String) -> Unit,
+    isUsernameError: Boolean,
+    password: String,
+    onPasswordTextChanged: (String) -> Unit,
+    isPasswordError: Boolean,
+    confirmPassword: String,
+    onConfirmPasswordChanged: (String) -> Unit,
+    isConfirmPasswordError: Boolean,
+    onCreateClick: () -> Unit,
+    errors: List<AuthorizationRegisterComponent.Error>,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 58.dp),
+    ) {
+        Title(
+            text = MR.strings.register_title.resolve(),
             modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 58.dp),
-        ) {
-            Title(
-                text = MR.strings.register_title.resolve(),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        bottom = 30.dp
-                    )
-            )
-            PrimaryTextField(
-                text = username,
-                hint = MR.strings.register_username.resolve(),
-                onTextChange = component::onUsernameTextChanged,
-                isError = isUsernameError,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        top = 10.dp,
-                        bottom = 10.dp
-                    ),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next
+                .fillMaxWidth()
+                .padding(
+                    bottom = 30.dp
                 )
-            )
-
-            PrimaryTextField(
-                text = password,
-                hint = MR.strings.register_password.resolve(),
-                onTextChange = component::onPasswordTextChanged,
-                isError = isPasswordError,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        top = 10.dp,
-                        bottom = 10.dp
-                    ),
-                visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next
-                )
-            )
-
-            PrimaryTextField(
-                text = confirmPassword,
-                hint = MR.strings.register_confirm_password.resolve(),
-                onTextChange = component::onConfirmPasswordChanged,
-                isError = isConfirmPasswordError,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp),
-                visualTransformation = PasswordVisualTransformation(),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Done
+        )
+        PrimaryTextField(
+            text = username,
+            placeholder = MR.strings.register_username.resolve(),
+            onTextChange = onUsernameTextChanged,
+            isError = isUsernameError,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 10.dp,
+                    bottom = 10.dp
                 ),
-                keyboardActions = KeyboardActions(
-                    onDone = { component.onCreateClick() }
-                )
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
             )
+        )
+
+        PrimaryTextField(
+            text = password,
+            placeholder = MR.strings.register_password.resolve(),
+            onTextChange = onPasswordTextChanged,
+            isError = isPasswordError,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 10.dp,
+                    bottom = 10.dp
+                ),
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
+            )
+        )
+
+        PrimaryTextField(
+            text = confirmPassword,
+            placeholder = MR.strings.register_confirm_password.resolve(),
+            onTextChange = onConfirmPasswordChanged,
+            isError = isConfirmPasswordError,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp),
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { onCreateClick() }
+            )
+        )
 
 
 
-            if (errors.isEmpty()) {
-                Spacer(modifier = Modifier.height(42.dp))
-            } else {
-                LazyColumn {
-                    items(errors) { error ->
-                        Error(
-                            text = error.text?.resolve() ?: "",
-                            modifier = Modifier.padding(
-                                start = 10.dp,
-                                top = 13.dp,
-                                bottom = 13.dp
-                            )
+        if (errors.isEmpty()) {
+            Spacer(modifier = Modifier.height(42.dp))
+        } else {
+            LazyColumn {
+                items(errors) { error ->
+                    Error(
+                        text = error.text?.resolve() ?: "",
+                        modifier = Modifier.padding(
+                            start = 10.dp,
+                            top = 13.dp,
+                            bottom = 13.dp
                         )
-                    }
+                    )
                 }
             }
-
-            PrimaryButton(
-                text = MR.strings.register_button.resolve(),
-                onClick = component::onCreateClick,
-                modifier = Modifier.fillMaxWidth()
-            )
         }
+
+        PrimaryButton(
+            text = MR.strings.register_button.resolve(),
+            onClick = onCreateClick,
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }
 

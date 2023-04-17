@@ -15,8 +15,38 @@ class RealProfileComponent(
     override val profile = profileReplica.observe(lifecycle)
     override val mode: CMutableStateFlow<ProfileComponent.Mode> =
         CMutableStateFlow(ProfileComponent.Mode.Viewing)
+    override val currentPassword = CMutableStateFlow("")
+    override val newPassword = CMutableStateFlow("")
+    override val confirmNewPassword = CMutableStateFlow("")
+    override val username = CMutableStateFlow("")
 
+    override fun onCurrentPasswordChanged(password: String) {
+        currentPassword.value = password
+    }
 
+    override fun onNewPasswordChanged(password: String) {
+        newPassword.value = password
+    }
 
+    override fun onConfirmNewPasswordChanged(password: String) {
+        confirmNewPassword.value = password
+    }
 
+    override fun onUsernameChanged(username: String) {
+        this.username.value = username
+    }
+
+    override fun onChangePasswordClick() {
+        mode.value = ProfileComponent.Mode.EditingPassword
+    }
+
+    override fun onDeleteAccountClick() = Unit
+
+    override fun onEditProfileClick() {
+        mode.value = ProfileComponent.Mode.EditingProfile
+    }
+
+    override fun onSaveChangesClick() = Unit
+
+    override fun onSavePasswordClick() = Unit
 }
