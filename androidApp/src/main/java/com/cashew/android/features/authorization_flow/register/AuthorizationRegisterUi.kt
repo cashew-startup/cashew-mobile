@@ -44,7 +44,7 @@ fun AuthorizationRegisterUi(
             Toolbar(
                 navigationIcon = {
                     Icon(
-                        painter = MR.assets.IcArrowBack32.painter(),
+                        painter = MR.assets.Ic32ArrowBack.painter(),
                         tint = CashewTheme.colors.icons.primary,
                         contentDescription = null,
                         modifier = Modifier.padding(12.dp)

@@ -36,9 +36,8 @@ class RealMainComponent(
         )
 
         ChildConfig.Receipt -> MainComponent.Child.Receipt(
-                componentFactory.createReceiptComponent(componentContext)
-            )
-        }
+            componentFactory.createReceiptComponent(componentContext)
+        )
     }
 
     sealed interface ChildConfig : Parcelable {

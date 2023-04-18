@@ -24,6 +24,7 @@ fun MainUi(
     Children(stack = childStack, modifier = modifier) { child ->
         when (val instance = child.instance) {
             is MainComponent.Child.Profile -> ProfileUi(component = instance.component)
+            is MainComponent.Child.Receipt -> {}
         }
     }
 }

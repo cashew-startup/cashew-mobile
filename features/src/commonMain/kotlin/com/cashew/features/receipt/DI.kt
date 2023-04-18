@@ -23,5 +23,5 @@ fun ComponentFactory.createReceiptListComponent(
     componentContext: ComponentContext,
     onOutput: (ReceiptListComponent.Output) -> Unit
 ): ReceiptListComponent {
-    return RealReceiptListComponent()
+    return RealReceiptListComponent(componentContext, onOutput)
 }

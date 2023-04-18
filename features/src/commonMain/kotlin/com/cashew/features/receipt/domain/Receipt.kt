@@ -5,6 +5,7 @@ import kotlin.jvm.JvmInline
 
 data class Receipt(
     val id: ReceiptId,
+    val name: String,
     val company: String,
     val address: String,
     val inn: String,
@@ -21,6 +22,7 @@ data class Receipt(
     companion object {
         fun mock(index: Int) = Receipt(
             id = ReceiptId(index.toLong()),
+            name = "Receipt #$index",
             company = "Company $index",
             address = "Harchenko street, $index",
             inn = "",
