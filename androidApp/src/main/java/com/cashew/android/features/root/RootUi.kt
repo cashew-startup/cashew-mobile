@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.cashew.android.core.message.MessageUi
 import com.cashew.android.features.authorization_flow.AuthorizationFlowUi
+import com.cashew.android.features.main.MainUi
 import com.cashew.android.features.welcome.WelcomeUi
 import com.cashew.features.root.ui.RootComponent
 
@@ -22,6 +23,7 @@ fun RootUi(
         when (val instance = child.instance) {
             is RootComponent.Child.Welcome -> WelcomeUi(component = instance.component)
             is RootComponent.Child.AuthorizationFlow -> AuthorizationFlowUi(component = instance.component)
+            is RootComponent.Child.Main -> MainUi(component = instance.component)
         }
     }
 

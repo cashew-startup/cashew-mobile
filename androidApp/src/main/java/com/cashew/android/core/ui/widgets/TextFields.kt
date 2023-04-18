@@ -130,7 +130,7 @@ fun CashewTextField(
 
 @Composable
 fun PrimaryTextField(
-    hint: String,
+    placeholder: String,
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     text: String = "",
@@ -146,7 +146,7 @@ fun PrimaryTextField(
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default
 ) {
     CashewTextField(
-        placeholder = hint,
+        placeholder = placeholder,
         onTextChange = onTextChange,
         modifier = modifier,
         text = text,
@@ -173,7 +173,7 @@ fun SearchTextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     PrimaryTextField(
-        hint = MR.strings.search.resolve(),
+        placeholder = MR.strings.search.resolve(),
         onTextChange = onTextChange,
         modifier = modifier,
         isEnabled = isEnabled,

@@ -16,11 +16,12 @@ data class ButtonTypography(
 )
 
 data class TextTypography(
-    val regular: TextStyle
+    val regular: TextStyle,
+    val bold: TextStyle
 )
 
 data class TitleTypography(
-    val bold: TextStyle
+    val semiBold: TextStyle
 )
 
 data class CaptionTypography(
@@ -28,7 +29,7 @@ data class CaptionTypography(
 )
 
 fun Typography.toMaterialTypography() = MaterialTypography(
-    h2 = title.bold,
+    h2 = title.semiBold,
     body1 = text.regular,
     body2 = button.bold,
     caption = caption.light

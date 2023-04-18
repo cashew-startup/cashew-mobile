@@ -10,6 +10,7 @@ import com.cashew.core.ComponentFactory
 import com.cashew.core.utils.toStateFlow
 import com.cashew.core.wrappers.CStateFlow
 import com.cashew.core.wrappers.wrap
+import com.cashew.features.profile.createProfileComponent
 import com.cashew.features.receipt.createReceiptComponent
 
 class RealMainComponent(
@@ -21,7 +22,7 @@ class RealMainComponent(
 
     override val childStackFlow: CStateFlow<ChildStack<*, MainComponent.Child>> = childStack(
         source = navigation,
-        initialConfiguration = ChildConfig.Receipt,
+        initialConfiguration = ChildConfig.Profile,
         handleBackButton = true,
         childFactory = ::createChild
     ).toStateFlow(lifecycle).wrap()
@@ -30,15 +31,21 @@ class RealMainComponent(
         config: ChildConfig,
         componentContext: ComponentContext
     ): MainComponent.Child = when (config) {
-        ChildConfig.Receipt -> {
-            MainComponent.Child.Receipt(
+        ChildConfig.Profile -> MainComponent.Child.Profile(
+            componentFactory.createProfileComponent(componentContext)
+        )
+
+        ChildConfig.Receipt -> MainComponent.Child.Receipt(
                 componentFactory.createReceiptComponent(componentContext)
             )
         }
     }
 
-
     sealed interface ChildConfig : Parcelable {
+
+        @Parcelize
+        object Profile : ChildConfig
+
         @Parcelize
         object Receipt : ChildConfig
     }

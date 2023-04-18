@@ -29,7 +29,8 @@ data class ElemColors(
 data class TextColors(
     val primary: Color,
     val contrast: Color,
-    val error: Color
+    val error: Color,
+    val delete: Color
 )
 
 data class ButtonColors(
@@ -43,7 +44,8 @@ data class IconColors(
     val primary: Color,
     val secondary: Color,
     val contrast: Color,
-    val error: Color
+    val error: Color,
+    val delete: Color
 )
 
 fun Colors.toMaterialColors(): MaterialColors = MaterialColors(

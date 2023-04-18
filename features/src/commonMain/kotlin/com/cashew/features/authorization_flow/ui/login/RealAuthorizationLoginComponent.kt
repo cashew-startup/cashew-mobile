@@ -30,6 +30,7 @@ class RealAuthorizationLoginComponent(
                 username = usernameState.value,
                 password = passwordState.value
             )
+
             when (result) {
                 AuthorizationRepository.LoginResult.InvalidCredentials -> {
                     errorsState.value = listOf(AuthorizationLoginComponent.Error.InvalidCredentials)

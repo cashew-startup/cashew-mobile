@@ -18,4 +18,18 @@
     <string name="register_confirm_password">Confirm password</string>
     <string name="register_button">Create</string>
     <string name="register_error_user_already_exists">User already exists</string>
+    <string name="profile_mail">Mail</string>
+    <string name="profile_change_password">Change password</string>
+    <string name="profile_delete_account">Delete account</string>
+    <string name="profile_current_password">Current password</string>
+    <string name="profile_new_password">New password</string>
+    <string name="profile_confirm_new_password">Confirm new password</string>
+    <string name="profile_error_password_short_long">Password is too short/long</string>
+    <string name="profile_error_password_not_match">Passwords don\'t match</string>
+    <string name="profile_error_password_current_wrong">It\'s not your current password :/</string>
+    <string name="profile_error_username_short_long">Username is too short/long</string>
+    <string name="profile_success_password_change">Password changed successfully</string>
+    <string name="profile_button_save_new_password">Save new password</string>
+    <string name="profile_button_save_changes">Save changes</string>
+    <string name="profile_placeholder_username">Username</string>
 </resources>
