@@ -42,8 +42,8 @@ class CMutableStateFlow<T>(
     constructor(initialValue: T) : this(MutableStateFlow(initialValue))
 
     override suspend fun collect(collector: FlowCollector<T>) = origin.collect(collector)
-    override val replayCache: List<T> = origin.replayCache
-    override var value: T = origin.value
+    override val replayCache: List<T> by origin::replayCache
+    override var value: T by origin::value
 }
 
 fun <T> MutableStateFlow<T>.wrap() = CMutableStateFlow(this)

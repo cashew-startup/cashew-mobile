@@ -45,92 +45,119 @@ fun AuthorizationLoginUi(
         modifier = modifier,
         topBar = { Toolbar() }
     ) { paddingValues ->
-        Column(
-            verticalArrangement = Arrangement.Center,
+        AuthorizationLoginContent(
+            usernameText = usernameText,
+            onUsernameTextChanged = component::onUsernameTextChanged,
+            isUsernameError = isUsernameError,
+            passwordText = passwordText,
+            onPasswordTextChanged = component::onPasswordTextChanged,
+            isPasswordError = isPasswordError,
+            errors = errors,
+            onLoginClick = component::onLoginClick,
+            onCreateNewAccountClick = component::onCreateNewAccountClick,
+            modifier = Modifier.padding(paddingValues)
+        )
+    }
+}
+
+@Composable
+fun AuthorizationLoginContent(
+    usernameText: String,
+    onUsernameTextChanged: (String) -> Unit,
+    isUsernameError: Boolean,
+    passwordText: String,
+    onPasswordTextChanged: (String) -> Unit,
+    isPasswordError: Boolean,
+    errors: List<AuthorizationLoginComponent.Error>,
+    onLoginClick: () -> Unit,
+    onCreateNewAccountClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        verticalArrangement = Arrangement.Center,
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 58.dp),
+    ) {
+        Title(
+            text = MR.strings.login_title.resolve(),
             modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-                .padding(horizontal = 58.dp),
-        ) {
-            Title(
-                text = MR.strings.login_title.resolve(),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 30.dp)
-            )
-            PrimaryTextField(
-                text = usernameText,
-                hint = MR.strings.login_username.resolve(),
-                onTextChange = component::onUsernameTextChanged,
-                isError = isUsernameError,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(
-                        top = 10.dp,
-                        bottom = 10.dp
-                    ),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Next
-                )
-            )
-            PrimaryTextField(
-                text = passwordText,
-                hint = MR.strings.login_password.resolve(),
-                onTextChange = component::onPasswordTextChanged,
-                isError = isPasswordError,
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.dp),
-                keyboardOptions = KeyboardOptions(
-                    imeAction = ImeAction.Done
+                .fillMaxWidth()
+                .padding(bottom = 30.dp)
+        )
+        PrimaryTextField(
+            text = usernameText,
+            placeholder = MR.strings.login_username.resolve(),
+            onTextChange = onUsernameTextChanged,
+            isError = isUsernameError,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(
+                    top = 10.dp,
+                    bottom = 10.dp
                 ),
-                keyboardActions = KeyboardActions(
-                    onDone = { component.onLoginClick() }
-                )
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
             )
-
-            if (errors.isEmpty()) {
-                Spacer(modifier = Modifier.height(42.dp))
-            } else {
-                LazyColumn {
-                    items(errors) { error ->
-                        Error(
-                            text = error.text?.resolve() ?: "",
-                            modifier = Modifier.padding(
-                                start = 10.dp,
-                                top = 13.dp,
-                                bottom = 13.dp
-                            )
-                        )
-                    }
-                }
-            }
-
-            PrimaryButton(
-                text = MR.strings.login_button.resolve(),
-                onClick = component::onLoginClick,
-                modifier = Modifier.fillMaxWidth()
+        )
+        PrimaryTextField(
+            text = passwordText,
+            placeholder = MR.strings.login_password.resolve(),
+            onTextChange = onPasswordTextChanged,
+            isError = isPasswordError,
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 10.dp),
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(
+                onDone = { onLoginClick() }
             )
+        )
 
-            TextButton(
-                onClick = component::onCreateNewAccountClick,
-                modifier = Modifier
-                    .align(CenterHorizontally)
-            ) {
-                Text(
-                    text = MR.strings.login_text_button.resolve(),
-                    style = CashewTheme.typography.text.regular.merge(
-                        TextStyle(
-                            textDecoration = TextDecoration.Underline,
-                            color = CashewTheme.colors.text.primary
+        if (errors.isEmpty()) {
+            Spacer(modifier = Modifier.height(42.dp))
+        } else {
+            LazyColumn {
+                items(errors) { error ->
+                    Error(
+                        text = error.text?.resolve() ?: "",
+                        modifier = Modifier.padding(
+                            start = 10.dp,
+                            top = 13.dp,
+                            bottom = 13.dp
                         )
                     )
-                )
+                }
             }
+        }
+
+        PrimaryButton(
+            text = MR.strings.login_button.resolve(),
+            onClick = onLoginClick,
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        TextButton(
+            onClick = onCreateNewAccountClick,
+            modifier = Modifier
+                .align(CenterHorizontally)
+        ) {
+            Text(
+                text = MR.strings.login_text_button.resolve(),
+                style = CashewTheme.typography.text.regular.merge(
+                    TextStyle(
+                        textDecoration = TextDecoration.Underline,
+                        color = CashewTheme.colors.text.primary
+                    )
+                )
+            )
         }
     }
 }
+
 
 @Preview
 @Composable
