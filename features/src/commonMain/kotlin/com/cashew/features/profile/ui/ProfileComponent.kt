@@ -21,6 +21,8 @@ interface ProfileComponent {
 
     val username: CStateFlow<String>
 
+    val errors: CStateFlow<List<Error>>
+
     fun onCurrentPasswordChanged(password: String)
 
     fun onNewPasswordChanged(password: String)
@@ -40,8 +42,10 @@ interface ProfileComponent {
     fun onSavePasswordClick()
 
     sealed class Error(val message: StringDesc) {
-        object PasswordNotMatch : Error(MR.strings.register_error_passwords_not_match.desc())
-
+        object PasswordNotMatch : Error(MR.strings.profile_error_password_not_match.desc())
+        object PasswordShortLong : Error(MR.strings.profile_error_password_short_long.desc())
+        object PasswordCurrentWrong: Error(MR.strings.profile_error_password_current_wrong.desc())
+        object UsernameShortLong : Error(MR.strings.profile_error_username_short_long.desc())
     }
 
     sealed interface Mode {

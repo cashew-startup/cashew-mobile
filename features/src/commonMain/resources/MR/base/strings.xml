@@ -24,9 +24,10 @@
     <string name="profile_current_password">Current password</string>
     <string name="profile_new_password">New password</string>
     <string name="profile_confirm_new_password">Confirm new password</string>
-    <string name="profile_error_short_password">Password is too short/long</string>
-    <string name="profile_error_passwords_not_match">Passwords don\'t match</string>
-    <string name="profile_error_wrong_current_password">It\'s not your current password :/</string>
+    <string name="profile_error_password_short_long">Password is too short/long</string>
+    <string name="profile_error_password_not_match">Passwords don\'t match</string>
+    <string name="profile_error_password_current_wrong">It\'s not your current password :/</string>
+    <string name="profile_error_username_short_long">Username is too short/long</string>
     <string name="profile_success_password_change">Password changed successfully</string>
     <string name="profile_button_save_new_password">Save new password</string>
     <string name="profile_button_save_changes">Save changes</string>

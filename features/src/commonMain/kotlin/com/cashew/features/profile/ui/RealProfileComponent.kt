@@ -19,6 +19,8 @@ class RealProfileComponent(
     override val newPassword = CMutableStateFlow("")
     override val confirmNewPassword = CMutableStateFlow("")
     override val username = CMutableStateFlow("")
+    override val errors: CStateFlow<List<ProfileComponent.Error>> =
+        CMutableStateFlow(emptyList())
 
     override fun onCurrentPasswordChanged(password: String) {
         currentPassword.value = password

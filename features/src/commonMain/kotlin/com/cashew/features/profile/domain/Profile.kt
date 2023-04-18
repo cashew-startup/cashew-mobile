@@ -7,4 +7,12 @@ data class Profile(
     val id: UserId,
     val username: Username,
     val email: String
-)
+) {
+    companion object {
+        fun mock() = Profile(
+            id = UserId("1"),
+            username = Username("kursor"),
+            email = "kursor"
+        )
+    }
+}

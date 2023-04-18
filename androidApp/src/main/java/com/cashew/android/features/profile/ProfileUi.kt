@@ -11,9 +11,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cashew.android.core.painter
 import com.cashew.android.core.resolve
+import com.cashew.android.core.theme.AppTheme
 import com.cashew.android.core.theme.CashewTheme
 import com.cashew.android.core.ui.widgets.*
 import com.cashew.core.wrappers.CMutableStateFlow
@@ -34,6 +36,7 @@ fun ProfileUi(
     val newPassword by component.newPassword.collectAsState()
     val confirmNewPassword by component.confirmNewPassword.collectAsState()
     val username by component.username.collectAsState()
+    val errors by component.errors.collectAsState()
 
     Scaffold(
         modifier = modifier,
@@ -59,6 +62,7 @@ fun ProfileUi(
                 onSaveChangesClick = component::onSaveChangesClick,
                 onChangePasswordClick = component::onChangePasswordClick,
                 onDeleteAccountClick = component::onDeleteAccountClick,
+                errors = errors,
                 modifier = Modifier.padding(paddingValues)
             )
         }
@@ -81,6 +85,7 @@ fun ProfileContent(
     onSaveChangesClick: () -> Unit,
     onChangePasswordClick: () -> Unit,
     onDeleteAccountClick: () -> Unit,
+    errors: List<ProfileComponent.Error>,
     modifier: Modifier = Modifier
 ) {
     when (mode) {
@@ -94,6 +99,7 @@ fun ProfileContent(
                 confirmNewPassword = confirmNewPassword,
                 onConfirmNewPasswordChanged = onConfirmNewPasswordChanged,
                 onSaveNewPasswordClick = onSaveNewPasswordClick,
+                errors = errors,
                 modifier = modifier
             )
         }
@@ -103,6 +109,7 @@ fun ProfileContent(
                 username = username,
                 onUsernameChanged = onUsernameChanged,
                 onSaveChangesClick = onSaveChangesClick,
+                errors = errors,
                 modifier = modifier
             )
         }
@@ -125,7 +132,10 @@ fun ProfileViewingContent(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.padding(horizontal = 20.dp)) {
-        Title(text = profile.username.value)
+        Title(
+            text = profile.username.value,
+            modifier = Modifier.padding(vertical = 38.5.dp)
+        )
 
         Text(
             text = MR.strings.profile_mail.resolve(),
@@ -140,13 +150,9 @@ fun ProfileViewingContent(
         Text(
             text = MR.strings.profile_change_password.resolve(),
             style = CashewTheme.typography.text.bold,
-            modifier = Modifier.clickable(onClick = onChangePasswordClick)
-        )
-
-        Text(
-            text = MR.strings.profile_delete_account.resolve(),
-            style = CashewTheme.typography.text.bold,
-            modifier = Modifier.padding(vertical = 20.dp)
+            modifier = Modifier
+                .clickable(onClick = onChangePasswordClick)
+                .padding(vertical = 20.dp)
         )
 
         Row(
@@ -177,6 +183,7 @@ fun ProfileEditingPasswordContent(
     confirmNewPassword: String,
     onConfirmNewPasswordChanged: (String) -> Unit,
     onSaveNewPasswordClick: () -> Unit,
+    errors: List<ProfileComponent.Error>,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier.padding(horizontal = 20.dp)) {
@@ -198,18 +205,26 @@ fun ProfileEditingPasswordContent(
         PrimaryTextField(
             text = currentPassword,
             placeholder = MR.strings.profile_current_password.resolve(),
-            onTextChange = onCurrentPasswordChanged
+            onTextChange = onCurrentPasswordChanged,
+            isError = errors.contains(ProfileComponent.Error.PasswordCurrentWrong)
         )
+        val isNewErred = errors.contains(ProfileComponent.Error.PasswordNotMatch) ||
+                errors.contains(ProfileComponent.Error.PasswordShortLong)
         PrimaryTextField(
             text = newPassword,
             placeholder = MR.strings.profile_new_password.resolve(),
-            onTextChange = onNewPasswordChanged
+            onTextChange = onNewPasswordChanged,
+            isError = isNewErred
         )
         PrimaryTextField(
             text = confirmNewPassword,
             placeholder = MR.strings.profile_confirm_new_password.resolve(),
-            onTextChange = onConfirmNewPasswordChanged
+            onTextChange = onConfirmNewPasswordChanged,
+            isError = isNewErred
         )
+        errors.forEach {
+            Error(text = it.message.resolve())
+        }
         PrimaryButton(
             text = MR.strings.profile_button_save_new_password.resolve(),
             onClick = onSaveNewPasswordClick
@@ -223,34 +238,35 @@ fun ProfileEditingProfileContent(
     username: String,
     onUsernameChanged: (String) -> Unit,
     onSaveChangesClick: () -> Unit,
+    errors: List<ProfileComponent.Error>,
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
         PrimaryTextField(
             text = username,
             placeholder = "",
-            onTextChange = onUsernameChanged
+            onTextChange = onUsernameChanged,
+            isError = errors.contains(ProfileComponent.Error.UsernameShortLong)
         )
         Text(
             text = MR.strings.profile_mail.resolve(),
             style = CashewTheme.typography.text.bold
         )
-
         Text(
             text = MR.strings.profile_mail.resolve()
         )
-
         Text(
             text = profile.email,
             style = CashewTheme.typography.text.regular
         )
-
         Text(
             text = MR.strings.profile_delete_account.resolve(),
             style = CashewTheme.typography.text.bold,
             modifier = Modifier.padding(vertical = 20.dp)
         )
-
+        errors.forEach {
+            Error(text = it.message.resolve())
+        }
         PrimaryButton(
             text = MR.strings.profile_button_save_changes.resolve(),
             onClick = onSaveChangesClick
@@ -258,15 +274,25 @@ fun ProfileEditingProfileContent(
     }
 }
 
+@Preview
+@Composable
+fun ProfileUiPreview() {
+    AppTheme {
+        ProfileUi(component = FakeProfileComponent())
+    }
+}
+
 class FakeProfileComponent : ProfileComponent {
     override val profile: CStateFlow<Loadable<Profile>> =
-        CMutableStateFlow(Loadable())
+        CMutableStateFlow(Loadable(data = Profile.mock()))
     override val mode: CStateFlow<ProfileComponent.Mode> =
         CMutableStateFlow(ProfileComponent.Mode.Viewing)
     override val currentPassword: CStateFlow<String> = CMutableStateFlow("")
     override val newPassword: CStateFlow<String> = CMutableStateFlow("")
     override val confirmNewPassword: CStateFlow<String> = CMutableStateFlow("")
     override val username: CStateFlow<String> = CMutableStateFlow("")
+    override val errors: CStateFlow<List<ProfileComponent.Error>> =
+        CMutableStateFlow(emptyList())
 
     override fun onCurrentPasswordChanged(password: String) = Unit
 
