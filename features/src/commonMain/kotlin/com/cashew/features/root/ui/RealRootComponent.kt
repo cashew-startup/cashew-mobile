@@ -2,10 +2,7 @@ package com.cashew.features.root.ui
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
-import com.arkivanov.decompose.router.stack.ChildStack
-import com.arkivanov.decompose.router.stack.StackNavigation
-import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.decompose.router.stack.*
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
@@ -16,6 +13,8 @@ import com.cashew.core.wrappers.CStateFlow
 import com.cashew.core.wrappers.wrap
 import com.cashew.features.authorization_flow.createAuthorizationFlowComponent
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
+import com.cashew.features.main.createMainComponent
+import com.cashew.features.main.ui.RealMainComponent
 import com.cashew.features.welcome.createWelcomeComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
 
@@ -52,12 +51,17 @@ class RealRootComponent(
                     ::onAuthorizationFlowOutput
                 )
             )
+            ChildConfig.Main -> RootComponent.Child.Main(
+                componentFactory.createMainComponent(componentContext)
+            )
         }
     }
 
     private fun onAuthorizationFlowOutput(output: AuthorizationFlowComponent.Output) {
         when (output) {
-            AuthorizationFlowComponent.Output.OnAccountAvailable -> {}
+            AuthorizationFlowComponent.Output.OnAccountAvailable -> {
+                navigation.replaceCurrent(ChildConfig.Main)
+            }
         }
     }
 
@@ -75,6 +79,9 @@ class RealRootComponent(
 
         @Parcelize
         object AuthorizationFlow : ChildConfig
+
+        @Parcelize
+        object Main : ChildConfig
 
     }
 
