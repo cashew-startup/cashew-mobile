@@ -14,7 +14,6 @@ import com.cashew.core.wrappers.wrap
 import com.cashew.features.authorization_flow.createAuthorizationFlowComponent
 import com.cashew.features.authorization_flow.ui.AuthorizationFlowComponent
 import com.cashew.features.main.createMainComponent
-import com.cashew.features.main.ui.RealMainComponent
 import com.cashew.features.welcome.createWelcomeComponent
 import com.cashew.features.welcome.ui.WelcomeComponent
 
@@ -27,7 +26,7 @@ class RealRootComponent(
 
     override val childStackFlow: CStateFlow<ChildStack<*, RootComponent.Child>> = childStack(
         source = navigation,
-        initialConfiguration = ChildConfig.Welcome,
+        initialConfiguration = ChildConfig.Main,
         handleBackButton = true,
         childFactory = ::createChild
     ).toStateFlow(lifecycle).wrap()

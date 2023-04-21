@@ -159,7 +159,7 @@ fun ProfileViewingContent(
             modifier = Modifier.clickable(onClick = onDeleteAccountClick)
         ) {
             Icon(
-                painter = MR.assets.IcDelete32.painter(),
+                painter = MR.assets.Ic32Delete.painter(),
                 contentDescription = null,
                 modifier = Modifier.padding(end = 10.dp),
                 tint = CashewTheme.colors.icons.delete

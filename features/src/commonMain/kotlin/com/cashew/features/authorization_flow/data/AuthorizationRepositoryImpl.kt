@@ -1,7 +1,6 @@
 package com.cashew.features.authorization_flow.data
 
-import com.cashew.core.authorization.AccessToken
-import com.cashew.core.authorization.RefreshToken
+import com.cashew.core.authorization.*
 import com.cashew.core.network.dto.LoginRequestDTO
 import com.cashew.core.network.dto.LoginResponseDTO
 import com.cashew.core.network.dto.RegisterRequestDTO
@@ -9,6 +8,7 @@ import com.cashew.core.network.dto.RegisterResponseDTO
 import com.cashew.core.network.exceptions.ClientRequestException
 import com.cashew.core.network.exceptions.UnauthorizedException
 import com.cashew.core.storage.storages.AccessTokenStorage
+import com.cashew.core.storage.storages.CredentialsStorage
 import com.cashew.core.storage.storages.RefreshTokenStorage
 import com.cashew.features.authorization_flow.data.AuthorizationRepository.LoginResult
 import com.cashew.features.authorization_flow.data.AuthorizationRepository.RegisterResult
@@ -19,6 +19,7 @@ import io.ktor.http.*
 
 class AuthorizationRepositoryImpl(
     private val httpClient: HttpClient,
+    private val credentialsStorage: CredentialsStorage,
     private val accessTokenStorage: AccessTokenStorage,
     private val refreshTokenStorage: RefreshTokenStorage
 ) : AuthorizationRepository {
@@ -29,6 +30,15 @@ class AuthorizationRepositoryImpl(
                 setBody(LoginRequestDTO(username, password))
             }
             .body<LoginResponseDTO>()
+            .also {
+                credentialsStorage.saveCredentials(
+                    Credentials(
+                        userId = UserId(it.id),
+                        username = Username(username),
+                        password = Password(password)
+                    )
+                )
+            }
             .token
             .let {
                 accessTokenStorage.saveAccessToken(AccessToken(it.accessToken))
@@ -45,6 +55,15 @@ class AuthorizationRepositoryImpl(
                 setBody(RegisterRequestDTO(username, password))
             }
             .body<RegisterResponseDTO>()
+            .also {
+                credentialsStorage.saveCredentials(
+                    Credentials(
+                        userId = UserId(it.id),
+                        username = Username(username),
+                        password = Password(password)
+                    )
+                )
+            }
             .token
             .let {
                 accessTokenStorage.saveAccessToken(AccessToken(it.accessToken))

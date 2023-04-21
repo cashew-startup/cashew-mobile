@@ -35,8 +35,8 @@ class TokenRefresher(
             )
         }.body<LoginResponseDTO>()
 
-        val newAccessToken = response.token?.accessToken ?: return false
-        val newRefreshToken = response.token.refreshToken ?: return false
+        val newAccessToken = response.token.accessToken
+        val newRefreshToken = response.token.refreshToken
         saveTokens(newAccessToken, newRefreshToken)
         return true
     }
@@ -54,8 +54,8 @@ class TokenRefresher(
                 )
             }.body<TokenResponseDTO>()
 
-            val newAccessToken = response.accessToken ?: return false
-            val newRefreshToken = response.refreshToken ?: return false
+            val newAccessToken = response.accessToken
+            val newRefreshToken = response.refreshToken
 
             saveTokens(newAccessToken, newRefreshToken)
             true

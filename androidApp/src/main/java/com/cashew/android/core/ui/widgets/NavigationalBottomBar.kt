@@ -16,7 +16,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = MR.assets.IcStats36.painter(),
+                    painter = MR.assets.Ic36Stats.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary
@@ -28,7 +28,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = MR.assets.IcList36.painter(),
+                    painter = MR.assets.Ic36List.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary
@@ -40,7 +40,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = MR.assets.IcQR36.painter(),
+                    painter = MR.assets.Ic36QR.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = Color.Unspecified
@@ -52,7 +52,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = MR.assets.IcGroup36.painter(),
+                    painter = MR.assets.Ic36Group.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary
@@ -64,7 +64,7 @@ fun NavigationalBottomBar() {
         BottomNavigationItem(
             icon = {
                 Icon(
-                    painter = MR.assets.IcProfile36.painter(),
+                    painter = MR.assets.Ic36Profile.painter(),
                     contentDescription = null,
                     modifier = Modifier,
                     tint = CashewTheme.colors.icons.primary

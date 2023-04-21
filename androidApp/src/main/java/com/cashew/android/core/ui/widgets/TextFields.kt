@@ -22,10 +22,10 @@ import com.cashew.core.MR
 
 @Composable
 fun CashewTextField(
+    text: String,
     placeholder: String,
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    text: String = "",
     isEnabled: Boolean = true,
     isError: Boolean = false,
     leadingIcon: @Composable (() -> Unit)? = null,
@@ -130,10 +130,10 @@ fun CashewTextField(
 
 @Composable
 fun PrimaryTextField(
+    text: String,
     placeholder: String,
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    text: String = "",
     isEnabled: Boolean = true,
     isError: Boolean = false,
     leadingIcon: @Composable (() -> Unit)? = null,
@@ -165,6 +165,7 @@ fun PrimaryTextField(
 
 @Composable
 fun SearchTextField(
+    text: String,
     onTextChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     isEnabled: Boolean = true,
@@ -173,6 +174,7 @@ fun SearchTextField(
     keyboardActions: KeyboardActions = KeyboardActions.Default
 ) {
     PrimaryTextField(
+        text = text,
         placeholder = MR.strings.search.resolve(),
         onTextChange = onTextChange,
         modifier = modifier,

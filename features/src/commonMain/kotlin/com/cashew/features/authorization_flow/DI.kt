@@ -28,6 +28,7 @@ val authorizationModule = module {
         AuthorizationRepositoryImpl(
             get<HttpClientProvider>().unauthorizedHttpClient,
             get(),
+            get(),
             get()
         )
     }

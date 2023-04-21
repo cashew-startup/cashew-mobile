@@ -132,7 +132,7 @@ class FakeMessageComponent : MessageComponent {
         listOf(
             Message(
                 text = StringDesc.Raw("Message"),
-                iconRes = MR.assets.IcError24,
+                iconRes = MR.assets.Ic24Error,
                 action = MessageAction(
                     title = StringDesc.Raw("Action"),
                     action = {}

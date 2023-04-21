@@ -25,7 +25,7 @@ fun Error(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
-            painter = MR.assets.IcError24.painter(),
+            painter = MR.assets.Ic24Error.painter(),
             tint = CashewTheme.colors.icons.error,
             contentDescription = null,
             modifier = Modifier.padding(

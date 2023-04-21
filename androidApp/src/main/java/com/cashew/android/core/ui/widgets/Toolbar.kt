@@ -1,12 +1,15 @@
 package com.cashew.android.core.ui.widgets
 
+import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.cashew.android.core.painter
 import com.cashew.android.core.theme.AppTheme
+import com.cashew.features.MR
 
 @Composable
 fun Toolbar(
@@ -35,6 +38,30 @@ fun Toolbar(
             }
         }
     }
+}
+
+@Composable
+fun SearchToolbar(
+    text: String,
+    onTextChanged: (String) -> Unit,
+    onSettingsClick: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+
+    TopAppBar(modifier = modifier) {
+        SearchTextField(
+            text = text,
+            onTextChange = onTextChanged,
+            modifier = Modifier.weight(1f)
+        )
+        IconButton(onClick = onSettingsClick) {
+            Icon(
+                painter = MR.assets.Ic32Settings.painter(),
+                contentDescription = null
+            )
+        }
+    }
+
 }
 
 @Preview
