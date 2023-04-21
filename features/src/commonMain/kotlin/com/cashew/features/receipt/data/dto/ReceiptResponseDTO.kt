@@ -1,6 +1,5 @@
 package com.cashew.features.receipt.data.dto
 
-import com.cashew.features.receipt.domain.Product
 import com.cashew.features.receipt.domain.Receipt
 import com.cashew.features.receipt.domain.ReceiptId
 import kotlinx.serialization.SerialName
