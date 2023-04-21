@@ -1,8 +1,10 @@
 package com.cashew.android.features.receipt.list
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -83,7 +85,19 @@ fun ReceiptItem(
     onDeleteReceiptClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Surface(modifier = modifier) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(
+                horizontal = 10.dp,
+                vertical = 5.dp
+            ),
+        shape = RoundedCornerShape(5.dp),
+        border = BorderStroke(
+            width = 1.dp,
+            color = CashewTheme.colors.elem.stroke
+        )
+    ) {
         Box(modifier = Modifier.padding(20.dp)) {
             Column {
                 Title(
@@ -166,9 +180,9 @@ fun ReceiptListUiPreview() {
 class FakeReceiptListComponent : ReceiptListComponent {
 
     override val receiptListState: CStateFlow<List<Receipt>> =
-        CMutableStateFlow(emptyList())
+        CMutableStateFlow(Receipt.mocks())
     override val searchText: CStateFlow<String> =
-        CMutableStateFlow("search")
+        CMutableStateFlow("")
 
     override fun onSearch(query: String) = Unit
 

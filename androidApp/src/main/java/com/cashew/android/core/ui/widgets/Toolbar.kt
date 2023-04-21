@@ -1,5 +1,6 @@
 package com.cashew.android.core.ui.widgets
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
@@ -48,16 +49,27 @@ fun SearchToolbar(
     modifier: Modifier = Modifier
 ) {
 
-    TopAppBar(modifier = modifier) {
+    TopAppBar(
+        modifier = modifier
+    ) {
         SearchTextField(
             text = text,
             onTextChange = onTextChanged,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .padding(horizontal = 10.dp)
+                .weight(1f)
         )
-        IconButton(onClick = onSettingsClick) {
+        IconButton(
+            onClick = onSettingsClick,
+        ) {
             Icon(
                 painter = MR.assets.Ic32Settings.painter(),
-                contentDescription = null
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(
+                        start = 10.dp,
+                        end = 20.dp
+                    )
             )
         }
     }
