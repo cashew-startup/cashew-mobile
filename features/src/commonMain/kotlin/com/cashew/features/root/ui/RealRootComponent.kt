@@ -8,6 +8,10 @@ import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
 import com.cashew.core.createMessageComponent
 import com.cashew.core.message.ui.MessageComponent
+import com.cashew.core.network.exceptions.ExceptionHandler
+import com.cashew.core.storage.storages.CredentialsStorage
+import com.cashew.core.utils.componentCoroutineScope
+import com.cashew.core.utils.safeLaunch
 import com.cashew.core.utils.toStateFlow
 import com.cashew.core.wrappers.CStateFlow
 import com.cashew.core.wrappers.wrap
@@ -19,14 +23,18 @@ import com.cashew.features.welcome.ui.WelcomeComponent
 
 class RealRootComponent(
     componentContext: ComponentContext,
-    private val componentFactory: ComponentFactory
+    private val componentFactory: ComponentFactory,
+    private val credentialsStorage: CredentialsStorage,
+    private val exceptionHandler: ExceptionHandler
 ) : ComponentContext by componentContext, RootComponent {
+
+    private val coroutineScope = componentCoroutineScope()
 
     private val navigation = StackNavigation<ChildConfig>()
 
     override val childStackFlow: CStateFlow<ChildStack<*, RootComponent.Child>> = childStack(
         source = navigation,
-        initialConfiguration = ChildConfig.Main,
+        initialConfiguration = ChildConfig.Welcome,
         handleBackButton = true,
         childFactory = ::createChild
     ).toStateFlow(lifecycle).wrap()
@@ -34,6 +42,14 @@ class RealRootComponent(
     override val messageComponent: MessageComponent = componentFactory.createMessageComponent(
         childContext(key = "message")
     )
+
+    init {
+        coroutineScope.safeLaunch(exceptionHandler) {
+            if (credentialsStorage.getCredentials() != null) {
+                navigation.navigate { listOf(ChildConfig.Main) }
+            }
+        }
+    }
 
     private fun createChild(
         childConfig: ChildConfig,
