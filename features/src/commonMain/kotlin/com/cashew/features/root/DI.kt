@@ -9,5 +9,5 @@ import org.koin.core.component.get
 fun ComponentFactory.createRootComponent(
     componentContext: ComponentContext
 ) : RootComponent {
-    return RealRootComponent(componentContext, get())
+    return RealRootComponent(componentContext, get(), get(), get())
 }

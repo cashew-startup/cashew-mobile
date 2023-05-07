@@ -85,6 +85,7 @@ fun AuthorizationLoginContent(
                 .fillMaxWidth()
                 .padding(bottom = 30.dp)
         )
+
         PrimaryTextField(
             text = usernameText,
             placeholder = MR.strings.login_username.resolve(),
@@ -167,8 +168,7 @@ fun AuthorizationLoginUiPreview() {
     }
 }
 
-class FakeAuthorizationLoginComponent :
-    AuthorizationLoginComponent {
+class FakeAuthorizationLoginComponent : AuthorizationLoginComponent {
 
     override val usernameState: CStateFlow<String> = CMutableStateFlow("Username")
     override val passwordState: CStateFlow<String> = CMutableStateFlow("Password")

@@ -15,6 +15,7 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.ExperimentalSerializationApi
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
 class HttpClientProvider(
@@ -39,7 +40,10 @@ class HttpClientProvider(
                     prettyPrint = true
                 })
             }
-            install(Logging) { level = LogLevel.ALL }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
+            }
             install(DefaultRequest) {
                 url {
                     host = backendUrl
@@ -72,11 +76,15 @@ class HttpClientProvider(
             expectSuccess = true
             install(HttpCallValidator) {
                 handleResponseExceptionWithRequest { cause, request ->
+                    cause.printStackTrace()
                     when (cause) {
                         is ResponseException -> {
-                            val exception = exceptionMapper
-                                .mapStatusDtoToException(cause.response.body())
-                                ?: exceptionMapper.mapResponseException(cause)
+                            val exception = try {
+                                exceptionMapper.mapStatusDtoToException(cause.response.body())
+                                    ?: exceptionMapper.mapResponseException(cause)
+                            } catch (e: SerializationException) {
+                                exceptionMapper.mapResponseException(cause)
+                            }
                             throw exception
                         }
                         is Exception -> throw exceptionMapper.mapException(cause)
