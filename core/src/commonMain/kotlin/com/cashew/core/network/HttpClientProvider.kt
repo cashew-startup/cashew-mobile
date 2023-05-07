@@ -40,7 +40,10 @@ class HttpClientProvider(
                     prettyPrint = true
                 })
             }
-            install(Logging) { level = LogLevel.ALL }
+            install(Logging) {
+                logger = Logger.DEFAULT
+                level = LogLevel.ALL
+            }
             install(DefaultRequest) {
                 url {
                     host = backendUrl

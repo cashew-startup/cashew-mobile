@@ -85,6 +85,7 @@ fun AuthorizationLoginContent(
                 .fillMaxWidth()
                 .padding(bottom = 30.dp)
         )
+
         PrimaryTextField(
             text = usernameText,
             placeholder = MR.strings.login_username.resolve(),
