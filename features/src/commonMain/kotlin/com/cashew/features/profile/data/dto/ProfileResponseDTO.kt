@@ -8,13 +8,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class ProfileResponseDTO(
-    @SerialName("id") val id: String,
     @SerialName("username") val username: String,
     @SerialName("email") val email: String
 )
 
 fun ProfileResponseDTO.toDomain() = Profile(
-    id = UserId(id),
     username = Username(username),
     email = email
 )
