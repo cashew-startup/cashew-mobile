@@ -2,6 +2,7 @@ package com.cashew.features.friends
 
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.ComponentFactory
+import com.cashew.features.friends.data.FriendsRepository
 import com.cashew.features.friends.ui.FriendsComponent
 import com.cashew.features.friends.ui.RealFriendsComponent
 import com.cashew.features.friends.ui.list.FriendsListComponent
@@ -11,7 +12,8 @@ import org.koin.core.component.get
 fun ComponentFactory.createFriendsListComponent(
     componentContext: ComponentContext
 ): FriendsListComponent {
-    return RealFriendsListComponent(componentContext)
+    val friendsReplica = get<FriendsRepository>().friendsReplica
+    return RealFriendsListComponent(componentContext, friendsReplica)
 }
 
 fun ComponentFactory.createFriendsComponent(
