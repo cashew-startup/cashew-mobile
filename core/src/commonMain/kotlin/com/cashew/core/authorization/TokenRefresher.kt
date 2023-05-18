@@ -20,7 +20,9 @@ class TokenRefresher(
 ) {
 
     suspend fun refreshTokens(client: HttpClient): Boolean {
-        return refreshByRefreshToken(client) || refreshByCredentials(client)
+        val refreshedByRefreshToken = refreshByRefreshToken(client)
+        val refreshedByCredentials = refreshByCredentials(client)
+        return refreshedByRefreshToken
     }
 
     suspend fun refreshByCredentials(unauthorizedHttpClient: HttpClient): Boolean {
