@@ -30,16 +30,11 @@ class ProfileRepositoryImpl(
         ) {
             val username = credentialsStorage.getUsername()?.value
                 ?: throw UnauthorizedException(NullPointerException("Username is null"))
-            try {
-                httpClient
-                    .get("v1/users/byUsername") {
-                        parameter("username", username)
-                    }
-                    .body<ProfileResponseDTO>()
-                    .toDomain()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                throw e
-            }
+            httpClient
+                .get("v1/users/byUsername") {
+                    parameter("username", username)
+                }
+                .body<ProfileResponseDTO>()
+                .toDomain()
         }
 }
