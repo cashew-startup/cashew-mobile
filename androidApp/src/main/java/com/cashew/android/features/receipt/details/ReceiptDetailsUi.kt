@@ -47,6 +47,7 @@ fun ReceiptDetailsUi(
     val searchText by component.searchTextState.collectAsState()
     val name by component.nameState.collectAsState()
     val products by component.productsState.collectAsState()
+    val originalReceipt by component.originalReceipt.collectAsState()
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -90,7 +91,7 @@ fun ReceiptDetailsUi(
                 }
                 item {
                     Text(
-                        text = component.originalReceipt.date,
+                        text = originalReceipt.date,
                         style = CashewTheme.typography.text.regular,
                         color = CashewTheme.colors.text.primary,
                         modifier = Modifier.padding(vertical = 10.dp)
@@ -186,8 +187,8 @@ fun ReceiptDetailsUiPreview() {
 
 class FakeReceiptDetailsComponent : ReceiptDetailsComponent {
     override val searchTextState: CStateFlow<String> = CMutableStateFlow("")
-    override val originalReceipt: Receipt = Receipt.mock(0)
-    override val nameState: CStateFlow<String> = CMutableStateFlow(originalReceipt.name)
+    override val originalReceipt: CStateFlow<Receipt> = CMutableStateFlow(Receipt.mock(0))
+    override val nameState: CStateFlow<String> = CMutableStateFlow(originalReceipt.value.name)
     override val allPayers: CStateFlow<List<Friend>> = CMutableStateFlow(Friend.mocks())
     override val productsState: CStateFlow<List<ProductViewData>> = CMutableStateFlow(
         Product.mocks().map { it.toViewData(allPayers.value) }
@@ -197,4 +198,5 @@ class FakeReceiptDetailsComponent : ReceiptDetailsComponent {
     override fun onSearch(text: String) = Unit
     override fun onSaveClick() = Unit
     override fun onProductClick(productId: ProductId) = Unit
+    override fun onDismissClicked() = Unit
 }

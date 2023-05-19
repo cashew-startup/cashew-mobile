@@ -1,10 +1,7 @@
 package com.cashew.features.receipt.ui
 
 import com.arkivanov.decompose.ComponentContext
-import com.arkivanov.decompose.router.stack.ChildStack
-import com.arkivanov.decompose.router.stack.StackNavigation
-import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.pop
+import com.arkivanov.decompose.router.stack.*
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
@@ -44,7 +41,7 @@ class RealReceiptComponent(
         is ChildConfig.Details -> ReceiptComponent.Child.Details(
             componentFactory.createReceiptDetailsComponent(
                 componentContext,
-                config.receiptId,
+                ReceiptId(config.receiptId),
                 ::onReceiptDetailsOutput
             )
         )
@@ -66,7 +63,9 @@ class RealReceiptComponent(
 
     private fun onReceiptListOutput(output: ReceiptListComponent.Output) {
         when (output) {
-            else -> {}
+            is ReceiptListComponent.Output.OnReceiptChosen -> {
+                navigation.push(ChildConfig.Details(output.receiptId.value))
+            }
         }
     }
 
@@ -76,7 +75,7 @@ class RealReceiptComponent(
         object List : ChildConfig
 
         @Parcelize
-        data class Details(val receiptId: ReceiptId) : ChildConfig
+        data class Details(val receiptId: Long) : ChildConfig
     }
 
 }

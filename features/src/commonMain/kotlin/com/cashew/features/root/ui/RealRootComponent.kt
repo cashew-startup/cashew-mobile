@@ -45,9 +45,9 @@ class RealRootComponent(
 
     init {
         coroutineScope.safeLaunch(exceptionHandler) {
-            if (credentialsStorage.getCredentials() != null) {
+            //if (credentialsStorage.getCredentials() != null) {
                 navigation.navigate { listOf(ChildConfig.Main) }
-            }
+            //}
         }
     }
 

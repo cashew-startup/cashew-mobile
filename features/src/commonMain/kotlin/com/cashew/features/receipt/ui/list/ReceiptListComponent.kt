@@ -16,13 +16,13 @@ interface ReceiptListComponent {
 
     fun onScanReceiptClick()
 
-    fun onReceiptClick()
+    fun onReceiptClick(receiptId: ReceiptId)
 
     fun onDeleteReceiptClick(receiptId: ReceiptId)
 
     fun onReceiptOptionsClick()
 
     sealed interface Output {
-
+        data class OnReceiptChosen(val receiptId: ReceiptId) : Output
     }
 }
