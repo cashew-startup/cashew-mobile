@@ -59,6 +59,7 @@ class HttpClientProvider(
                                 ?: return@loadTokens null
                             val refreshToken = refreshTokenProvider.getRefreshToken()?.value
                                 ?: return@loadTokens null
+                            println("Load tokens: accessToken = $accessToken refreshToken = $refreshToken")
                             BearerTokens(accessToken, refreshToken)
                         }
 
@@ -68,6 +69,7 @@ class HttpClientProvider(
                                 ?: return@refreshTokens null
                             val refreshToken = refreshTokenProvider.getRefreshToken()?.value
                                 ?: return@refreshTokens null
+                            println("Refresh tokens: accessToken = $accessToken refreshToken = $refreshToken")
                             BearerTokens(accessToken, refreshToken)
                         }
                     }

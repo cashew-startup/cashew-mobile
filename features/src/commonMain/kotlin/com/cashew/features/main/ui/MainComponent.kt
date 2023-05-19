@@ -9,6 +9,18 @@ interface MainComponent {
 
     val childStackFlow: CStateFlow<ChildStack<*, Child>>
 
+    val activeTabState: CStateFlow<Tab>
+
+    fun onActiveTabChanged(tab: Tab)
+
+    sealed interface Tab {
+        object Expenses : Tab
+        object Receipt : Tab
+        object Scan : Tab
+        object Friends : Tab
+        object Profile : Tab
+    }
+
     sealed interface Child {
         class Profile(val component: ProfileComponent) : Child
         class Receipt(val component: ReceiptComponent) : Child
