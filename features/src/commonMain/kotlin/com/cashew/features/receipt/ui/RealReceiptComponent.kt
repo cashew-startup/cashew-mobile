@@ -4,13 +4,17 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
 import com.cashew.core.utils.toStateFlow
 import com.cashew.core.wrappers.CStateFlow
 import com.cashew.core.wrappers.wrap
+import com.cashew.features.receipt.createReceiptDetailsComponent
 import com.cashew.features.receipt.createReceiptListComponent
+import com.cashew.features.receipt.domain.ReceiptId
+import com.cashew.features.receipt.ui.details.ReceiptDetailsComponent
 import com.cashew.features.receipt.ui.list.ReceiptListComponent
 
 class RealReceiptComponent(
@@ -31,12 +35,33 @@ class RealReceiptComponent(
         config: ChildConfig,
         componentContext: ComponentContext
     ): ReceiptComponent.Child = when (config) {
-        ChildConfig.List -> ReceiptComponent.Child.List(
+        is ChildConfig.List -> ReceiptComponent.Child.List(
             componentFactory.createReceiptListComponent(
                 componentContext,
                 ::onReceiptListOutput
             )
         )
+        is ChildConfig.Details -> ReceiptComponent.Child.Details(
+            componentFactory.createReceiptDetailsComponent(
+                componentContext,
+                config.receiptId,
+                ::onReceiptDetailsOutput
+            )
+        )
+    }
+
+    private fun onReceiptDetailsOutput(output: ReceiptDetailsComponent.Output) {
+        when (output) {
+            is ReceiptDetailsComponent.Output.OnDismissRequested -> {
+                navigation.pop()
+            }
+            is ReceiptDetailsComponent.Output.OnProductChosen -> {
+
+            }
+            is ReceiptDetailsComponent.Output.OnReceiptSaved -> {
+                navigation.pop()
+            }
+        }
     }
 
     private fun onReceiptListOutput(output: ReceiptListComponent.Output) {
@@ -49,6 +74,9 @@ class RealReceiptComponent(
     sealed interface ChildConfig : Parcelable {
         @Parcelize
         object List : ChildConfig
+
+        @Parcelize
+        data class Details(val receiptId: ReceiptId) : ChildConfig
     }
 
 }

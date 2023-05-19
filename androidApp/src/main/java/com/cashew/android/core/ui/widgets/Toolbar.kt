@@ -45,7 +45,7 @@ fun Toolbar(
 fun SearchToolbar(
     text: String,
     onTextChanged: (String) -> Unit,
-    onSettingsClick: () -> Unit,
+    onSettingsClick: (() -> Unit)? = null,
     modifier: Modifier = Modifier
 ) {
 
@@ -59,18 +59,20 @@ fun SearchToolbar(
                 .padding(horizontal = 10.dp)
                 .weight(1f)
         )
-        IconButton(
-            onClick = onSettingsClick,
-        ) {
-            Icon(
-                painter = MR.assets.Ic32Settings.painter(),
-                contentDescription = null,
-                modifier = Modifier
-                    .padding(
-                        start = 10.dp,
-                        end = 20.dp
-                    )
-            )
+        onSettingsClick?.let {
+            IconButton(
+                onClick = it,
+            ) {
+                Icon(
+                    painter = MR.assets.Ic32Settings.painter(),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .padding(
+                            start = 10.dp,
+                            end = 20.dp
+                        )
+                )
+            }
         }
     }
 
