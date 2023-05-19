@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.ComponentFactory
 import com.cashew.features.friends.data.FriendsRepository
 import com.cashew.features.receipt.data.ReceiptRepository
+import com.cashew.features.receipt.data.ReceiptRepositoryMock
 import com.cashew.features.receipt.domain.ReceiptId
 import com.cashew.features.receipt.ui.RealReceiptComponent
 import com.cashew.features.receipt.ui.ReceiptComponent
@@ -15,7 +16,9 @@ import org.koin.core.component.get
 import org.koin.dsl.module
 
 val receiptModule = module {
-
+    single<ReceiptRepository> {
+        ReceiptRepositoryMock(get())
+    }
 }
 
 fun ComponentFactory.createReceiptComponent(

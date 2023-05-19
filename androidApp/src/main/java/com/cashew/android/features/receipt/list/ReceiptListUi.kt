@@ -156,15 +156,15 @@ fun EmptyReceiptContent(
                         )
                     )
                 },
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = MR.strings.receipt_list_empty_content_text.resolve(),
                 style = CashewTheme.typography.text.regular,
                 color = CashewTheme.colors.text.primary,
                 modifier = Modifier.padding(
-                    top = 15.dp,
-                    bottom = 13.dp,
+                    top = 32.dp,
+                    bottom = 32.dp,
                     start = 15.dp,
                     end = 15.dp
                 ),
