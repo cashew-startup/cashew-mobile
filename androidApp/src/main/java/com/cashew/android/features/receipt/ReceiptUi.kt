@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
+import com.cashew.android.features.receipt.details.ReceiptDetailsUi
 import com.cashew.android.features.receipt.list.ReceiptListUi
 import com.cashew.features.receipt.ui.ReceiptComponent
 
@@ -18,6 +19,7 @@ fun ReceiptUi(
     Children(stack = childStack, modifier = modifier) { child ->
         when (val instance = child.instance) {
             is ReceiptComponent.Child.List -> ReceiptListUi(component = instance.component)
+            is ReceiptComponent.Child.Details -> ReceiptDetailsUi(component = instance.component)
         }
     }
 

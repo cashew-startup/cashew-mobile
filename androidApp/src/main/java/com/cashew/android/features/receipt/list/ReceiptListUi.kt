@@ -51,6 +51,7 @@ fun ReceiptListUi(
     ) { paddingValues ->
         ReceiptListContent(
             receiptList = receiptList,
+            onReceiptClick = component::onReceiptClick,
             onDeleteReceiptClick = component::onDeleteReceiptClick,
             onScanReceiptClick = component::onScanReceiptClick,
             modifier = Modifier.padding(paddingValues)
@@ -61,6 +62,7 @@ fun ReceiptListUi(
 @Composable
 fun ReceiptListContent(
     receiptList: List<Receipt>,
+    onReceiptClick: (ReceiptId) -> Unit,
     onDeleteReceiptClick: (ReceiptId) -> Unit,
     onScanReceiptClick: () -> Unit,
     modifier: Modifier = Modifier
@@ -72,6 +74,7 @@ fun ReceiptListContent(
             items(receiptList) {
                 ReceiptItem(
                     receipt = it,
+                    onClick = { onReceiptClick(it.id) },
                     onDeleteReceiptClick = { onDeleteReceiptClick(it.id) }
                 )
             }
@@ -79,9 +82,11 @@ fun ReceiptListContent(
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ReceiptItem(
     receipt: Receipt,
+    onClick: () -> Unit,
     onDeleteReceiptClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -96,7 +101,8 @@ fun ReceiptItem(
         border = BorderStroke(
             width = 1.dp,
             color = CashewTheme.colors.elem.stroke
-        )
+        ),
+        onClick = onClick
     ) {
         Box(modifier = Modifier.padding(20.dp)) {
             Column {
@@ -111,7 +117,10 @@ fun ReceiptItem(
                 )
             }
 
-            IconButton(onClick = onDeleteReceiptClick) {
+            IconButton(
+                onClick = onDeleteReceiptClick,
+                modifier = Modifier.align(Alignment.TopEnd)
+            ) {
                 Icon(
                     painter = MR.assets.Ic32Delete.painter(),
                     contentDescription = null
@@ -147,15 +156,15 @@ fun EmptyReceiptContent(
                         )
                     )
                 },
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = MR.strings.receipt_list_empty_content_text.resolve(),
                 style = CashewTheme.typography.text.regular,
                 color = CashewTheme.colors.text.primary,
                 modifier = Modifier.padding(
-                    top = 15.dp,
-                    bottom = 13.dp,
+                    top = 32.dp,
+                    bottom = 32.dp,
                     start = 15.dp,
                     end = 15.dp
                 ),
@@ -190,7 +199,7 @@ class FakeReceiptListComponent : ReceiptListComponent {
 
     override fun onScanReceiptClick() = Unit
 
-    override fun onReceiptClick() = Unit
+    override fun onReceiptClick(receiptId: ReceiptId) = Unit
 
     override fun onDeleteReceiptClick(receiptId: ReceiptId) = Unit
 

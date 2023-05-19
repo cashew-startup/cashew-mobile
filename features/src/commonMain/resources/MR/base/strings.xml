@@ -38,4 +38,10 @@
 
     <string name="receipt_list_empty_content_text">You dont have any checks yet.\nClick the Scan Receipt button to go to the receipt scanning menu.</string>
     <string name="receipt_list_empty_content_scan_button">Scan receipt</string>
+
+    <string name="receipt_details_button_save">Save changes</string>
+    <string name="receipt_details_column_product">Product</string>
+    <string name="receipt_details_column_payers">Payers</string>
+    <string name="receipt_details_column_cost">Cost</string>
+    <string name="receipt_details_placeholder_name">Name of the receipt</string>
 </resources>

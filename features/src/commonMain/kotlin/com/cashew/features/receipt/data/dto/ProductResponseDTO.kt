@@ -19,5 +19,5 @@ fun ProductResponseDTO.toDomain() = Product(
     name = name,
     price = price,
     count = count,
-    sumPrice = sumPrice
+    cost = sumPrice
 )

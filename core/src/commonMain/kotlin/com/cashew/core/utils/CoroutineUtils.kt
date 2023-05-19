@@ -9,7 +9,7 @@ fun CoroutineScope.safeLaunch(
     exceptionHandler: ExceptionHandler,
     interceptor: (Exception) -> Unit = { throw it },
     onExceptionHandled: (Exception) -> Unit = {},
-    block: suspend () -> Unit,
+    block: suspend CoroutineScope.() -> Unit,
 ) = launch {
     try {
         block()
@@ -27,7 +27,7 @@ fun CoroutineScope.safeLaunch(
 
 fun CoroutineScope.safeLaunch(
     exceptionHandler: (Exception) -> Unit,
-    block: suspend () -> Unit
+    block: suspend CoroutineScope.() -> Unit
 ) = launch {
     try {
         block()

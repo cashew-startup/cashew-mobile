@@ -7,7 +7,7 @@ import com.cashew.features.receipt.domain.ReceiptId
 
 class RealReceiptListComponent(
     componentContext: ComponentContext,
-    onOutput: (ReceiptListComponent.Output) -> Unit
+    private val onOutput: (ReceiptListComponent.Output) -> Unit
 ) : ComponentContext by componentContext, ReceiptListComponent {
 
     override val receiptListState: CMutableStateFlow<List<Receipt>> = CMutableStateFlow(Receipt.mocks())
@@ -22,7 +22,9 @@ class RealReceiptListComponent(
 
     override fun onScanReceiptClick() = Unit // TODO
 
-    override fun onReceiptClick() = Unit // TODO
+    override fun onReceiptClick(receiptId: ReceiptId) {
+        onOutput(ReceiptListComponent.Output.OnReceiptChosen(receiptId))
+    }
 
     override fun onDeleteReceiptClick(receiptId: ReceiptId) {
         receiptListState.value = receiptListState.value.filterNot { it.id == receiptId }

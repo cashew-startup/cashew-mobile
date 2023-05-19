@@ -7,7 +7,7 @@ data class Product(
     val name: String,
     val price: Double,
     val count: String,
-    val sumPrice: Double,
+    val cost: Double,
 ) {
     companion object {
         fun mock(index: Int) = Product(
@@ -15,7 +15,7 @@ data class Product(
             name = "Product $index",
             price = index.toDouble(),
             count = index.toString(),
-            sumPrice = (index * index).toDouble()
+            cost = (index * index).toDouble()
         )
 
         fun mocks() = (0..5).map { mock(it) }
