@@ -29,17 +29,12 @@ class FriendsRepositoryImpl(
         fetcher = {
             val username = credentialsStorage.getUsername()?.value
                 ?: throw UnauthorizedException(NullPointerException("Username is null"))
-            try {
             httpClient
                 .get("v1/friends") {
                     parameter("username", username)
                 }
                 .body<FriendResponseDTO>()
                 .toDomain()
-            } catch (e: Exception) {
-                e.printStackTrace()
-                throw e
-            }
         }
     )
 

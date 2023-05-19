@@ -3,11 +3,13 @@ package com.cashew.features.main.ui
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.cashew.core.ComponentFactory
 import com.cashew.core.utils.toStateFlow
+import com.cashew.core.wrappers.CMutableStateFlow
 import com.cashew.core.wrappers.CStateFlow
 import com.cashew.core.wrappers.wrap
 import com.cashew.features.profile.createProfileComponent
@@ -27,6 +29,9 @@ class RealMainComponent(
         childFactory = ::createChild
     ).toStateFlow(lifecycle).wrap()
 
+    override val activeTabState: CMutableStateFlow<MainComponent.Tab> =
+        CMutableStateFlow(MainComponent.Tab.Profile)
+
     private fun createChild(
         config: ChildConfig,
         componentContext: ComponentContext
@@ -38,6 +43,23 @@ class RealMainComponent(
         ChildConfig.Receipt -> MainComponent.Child.Receipt(
             componentFactory.createReceiptComponent(componentContext)
         )
+    }
+
+    override fun onActiveTabChanged(tab: MainComponent.Tab) {
+        if (activeTabState.value == tab) return
+        activeTabState.value = tab
+        navigation.bringToFront(tab.toChildConfig())
+    }
+
+    private fun MainComponent.Tab.toChildConfig() = when (this) {
+        MainComponent.Tab.Profile -> ChildConfig.Profile
+        MainComponent.Tab.Receipt -> ChildConfig.Receipt
+        else -> ChildConfig.Profile
+    }
+
+    private fun ChildConfig.toTab() = when (this) {
+        ChildConfig.Profile -> MainComponent.Tab.Profile
+        ChildConfig.Receipt -> MainComponent.Tab.Receipt
     }
 
     sealed interface ChildConfig : Parcelable {
