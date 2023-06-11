@@ -3,7 +3,7 @@ package com.cashew.features.friends
 import com.arkivanov.decompose.ComponentContext
 import com.cashew.core.ComponentFactory
 import com.cashew.features.friends.data.FriendsRepository
-import com.cashew.features.friends.data.FriendsRepositoryMock
+import com.cashew.features.friends.data.FriendsRepositoryImpl
 import com.cashew.features.friends.ui.FriendsComponent
 import com.cashew.features.friends.ui.RealFriendsComponent
 import com.cashew.features.friends.ui.list.FriendsListComponent
@@ -13,7 +13,11 @@ import org.koin.dsl.module
 
 val friendsModule = module {
     single<FriendsRepository> {
-        FriendsRepositoryMock(get())
+        FriendsRepositoryImpl(
+            get(),
+            get(),
+            get()
+        )
     }
 }
 

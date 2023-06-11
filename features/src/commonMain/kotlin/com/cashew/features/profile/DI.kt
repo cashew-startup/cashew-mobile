@@ -5,7 +5,6 @@ import com.cashew.core.ComponentFactory
 import com.cashew.core.network.HttpClientProvider
 import com.cashew.features.profile.data.ProfileRepository
 import com.cashew.features.profile.data.ProfileRepositoryImpl
-import com.cashew.features.profile.data.ProfileRepositoryMock
 import com.cashew.features.profile.ui.ProfileComponent
 import com.cashew.features.profile.ui.RealProfileComponent
 import org.koin.core.component.get
@@ -13,12 +12,11 @@ import org.koin.dsl.module
 
 val profileModule = module {
     single<ProfileRepository> {
-        ProfileRepositoryMock(get())
-//        ProfileRepositoryImpl(
-//            get<HttpClientProvider>().authorizedHttpClient,
-//            get(),
-//            get()
-//        )
+        ProfileRepositoryImpl(
+            get<HttpClientProvider>().authorizedHttpClient,
+            get(),
+            get()
+        )
     }
 }
 
